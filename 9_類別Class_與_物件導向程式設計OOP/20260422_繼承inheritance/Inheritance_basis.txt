@@ -1,0 +1,9 @@
+base class (superclass): 即parent, 父類別, 基類別
+derived class (subclass):   即child,  子類別, 衍生類別
+
+
+is-a  (繼承): 如果 B 是一個 A，那麼 B 應該繼承 A ，(Cat is an Animal)
+has-a (組合): 如果 A 裡面有一個 B，那麼 B 應該是 A 的一個成員變數， (Car has an Engine)
+
+語法:
+class derived-class-name : 繼承方式(public,private,protected) base-class-name {...};

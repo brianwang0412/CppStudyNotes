@@ -1,0 +1,63 @@
+https://yuihuang.com/cpe-level-1-49/
+https://cpe.cse.nsysu.edu.tw/environment.php#starList
+
+加速
+ios_base::sync_with_stdio(0);
+cin.tie(0);
+
+{
+關於ios_base::sync_with_stdio(0);
+這裡的0表示false
+---
+
+🔹 ios
+input / output stream
+意思：輸入輸出串流（資料流）
+
+---
+
+🔹ios_base::
+ios_base 這個類別的東西
+
+---
+
+🔹 sync
+synchronize
+意思：同步
+
+---
+
+🔹stdio
+standard input / output
+指的是 C 語言的標準輸入輸出stdio.h
+  scanf
+  printf
+
+---
+
+ios_base::sync_with_stdio();
+C++ 的 cin/cout 要不要跟 C 的 scanf/printf 同步
+}
+
+
+
+{
+關於cin.tie(0)
+這裡的0表示nullptr
+---
+
+🔹 tie
+英文意思：綁住、連結
+在 C++ 中：把一個輸入串流「綁定」到某個輸出串流
+
+---
+
+預設情況：
+cin.tie(&cout);
+
+每次 cin 讀取前
+都會先把 cout 緩衝區內容立刻顯示出來
+---
+
+
+}
