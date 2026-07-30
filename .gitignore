@@ -1,2 +1,7 @@
 test.cpp
-test.exe
+.exe
+Debug/
+Release/
+build/
+.vs/
+.vscode/
