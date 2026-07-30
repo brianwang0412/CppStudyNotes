@@ -102,6 +102,5 @@ int main(){
 
 
 
-// 本篇筆記參考 https://hackmd.io/@LukeTseng/Hya8JhQVx
 // 本篇筆記參考 Gemini
 //Created by B.J.Wang

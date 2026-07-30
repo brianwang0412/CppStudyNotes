@@ -1,0 +1,1 @@
+// ½Ð°Ñ¦Ò: https://blog.gtwang.org/programming/lambda-expression-in-c11/
