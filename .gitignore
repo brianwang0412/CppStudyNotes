@@ -1,7 +1,10 @@
 test.cpp
 .exe
-Debug/
-Release/
 build/
-.vs/
 .vscode/
+100_other/
+
+
+#not done yet
+10_夹非家狾ㄧΑ畐_STL_containers/priority_queue/
+10_夹非家狾ㄧΑ畐_STL_containers/4_map/
