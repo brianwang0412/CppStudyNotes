@@ -10,48 +10,48 @@ int main() {
     vector<int> vec = {10, 20, 30, 40, 50};
     map<string,int> scores = {{"Alice",85},{"Bob",70},{"Carol",92},{"David",60}};
 
-    // 1. ¤Ï¦V­¡¥N¾¹¦L¥X vec
-    cout << "1. vec¤Ï¦V¿é¥X: ";
+    // 1. åå‘è¿­ä»£å™¨å°å‡º vec
+    cout << "1. vecåå‘è¼¸å‡º: ";
     for (vector<int>::reverse_iterator rit = vec.rbegin(); rit != vec.rend(); ++rit) {
         cout << *rit << " ";
     }
     cout << endl;
 
-    // 2. const_iterator ¥¿¦V¹M¾ú scores
-    cout << "2. scores(¨Ì©m¦W¦r¥À±Æ§Ç): ";
+    // 2. const_iterator æ­£å‘éæ­· scores
+    cout << "2. scores(ä¾å§“åå­—æ¯æ’åº): ";
     for (map<string,int>::const_iterator cit = scores.cbegin(); cit != scores.cend(); ++cit) {
         cout << cit->first << ":" << cit->second << " ";
     }
     cout << endl;
 
-    // 3. find 30 ¨Ã¦b¨ä«e´¡¤J 25
+    // 3. find 30 ä¸¦åœ¨å…¶å‰æ’å…¥ 25
     vector<int>::iterator it30 = find(vec.begin(), vec.end(), 30);
     if (it30 != vec.end()) {
-        vec.insert(it30, 25); // ª`·N¡Ginsert «á it30 ¤w¥¢®Ä¡A¤§«á¤£¥i¦A¥Î¥¦
+        vec.insert(it30, 25); // æ³¨æ„ï¼šinsert å¾Œ it30 å·²å¤±æ•ˆï¼Œä¹‹å¾Œä¸å¯å†ç”¨å®ƒ
     }
-    cout << "3. ´¡¤J25«áªºvec: ";
+    cout << "3. æ’å…¥25å¾Œçš„vec: ";
     for (vector<int>::iterator it = vec.begin(); it != vec.end(); ++it) {
         cout << *it << " ";
     }
     cout << endl;
 
-    // 4. §R°£¦¨ÁZ < 70 ªº¾Ç¥Í
+    // 4. åˆªé™¤æˆç¸¾ < 70 çš„å­¸ç”Ÿ
     for (map<string,int>::iterator it = scores.begin(); it != scores.end(); ) {
         if (it->second < 70) {
-            it = scores.erase(it); // erase ¦^¶Ç¤U¤@­Ó¦³®Äªº iterator¡AÁ×§K iterator ¥¢®Ä°İÃD
+            it = scores.erase(it); // erase å›å‚³ä¸‹ä¸€å€‹æœ‰æ•ˆçš„ iteratorï¼Œé¿å… iterator å¤±æ•ˆå•é¡Œ
         } else {
             ++it;
         }
     }
-    cout << "4. §R°£«áªºscores: ";
+    cout << "4. åˆªé™¤å¾Œçš„scores: ";
     for (map<string,int>::iterator it = scores.begin(); it != scores.end(); ++it) {
         cout << it->first << ":" << it->second << " ";
     }
     cout << endl;
 
-    // 5. accumulate ­pºâÁ`©M
+    // 5. accumulate è¨ˆç®—ç¸½å’Œ
     int sum = accumulate(vec.begin(), vec.end(), 0);
-    cout << "5. vecÁ`©M: " << sum << endl;
+    cout << "5. vecç¸½å’Œ: " << sum << endl;
 
     return 0;
 }

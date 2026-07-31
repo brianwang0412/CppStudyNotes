@@ -2,31 +2,31 @@
 #include<string>
 #include<vector>
 #include<map>
-#include<algorithm>  //std::find ©w¸q¦b¦¹
-#include<numeric>    //std::accumulate ©w¸q¦b¦¹
+#include<algorithm>  //std::find å®šç¾©åœ¨æ­¤
+#include<numeric>    //std::accumulate å®šç¾©åœ¨æ­¤
 using namespace std;
 
 int main(){
     vector<int> vec = {10, 20, 30, 40, 50};
     map<string, int> scores = {{"Alice",85},{"Bob",70},{"Carol",92},{"David",60}};
     
-    // 1. ¨Ï¥Î¤Ï¦V­¡¥N¾¹ (reverse_iterator) ¥Ñ«á©¹«e¦L¥X vec ªº©Ò¦³¤¸¯À
-    cout<<"1. vec¤Ï¦V¿é¥X: ";
+    // 1. ä½¿ç”¨åå‘è¿­ä»£å™¨ (reverse_iterator) ç”±å¾Œå¾€å‰å°å‡º vec çš„æ‰€æœ‰å…ƒç´ 
+    cout<<"1. vecåå‘è¼¸å‡º: ";
     for (vector<int>::reverse_iterator it=vec.rbegin(); it!=vec.rend(); ++it){
         cout<< *it << ' ';
     }
     cout<<endl;
 
-    // 2. ¨Ï¥Î const_iterator ¥¿¦V¹M¾ú scores¡A¦L¥X¨C¦ì¾Ç¥Íªº©m¦W»P¦¨ÁZ
-    cout<<"2. scores(¨Ì©m¦W¦r¥À±Æ§Ç): ";
+    // 2. ä½¿ç”¨ const_iterator æ­£å‘éæ­· scoresï¼Œå°å‡ºæ¯ä½å­¸ç”Ÿçš„å§“åèˆ‡æˆç¸¾
+    cout<<"2. scores(ä¾å§“åå­—æ¯æ’åº): ";
     for (map<string, int>::const_iterator it=scores.begin(); it!=scores.end(); ++it){
         cout<< it->first << ':' << it->second << ' ';
     }
     cout<<endl;
 
-    // 3. ¨Ï¥Î std::find ·f°t iterator¡A¦b vec ¤¤§ä¨ì¼Æ­È 30 ªº¦ì¸m¡A¨Ã¦b¸Ó¦ì¸m¡u¤§«e¡v´¡¤J·s¤¸¯À 25¡A
-    //    ±µµÛ¦L¥X´¡¤J«á vec ªº§¹¾ã¤º®e¡C¡]¶·ª`·N insert «á iterator ¥¢®Äªº°İÃD¡^
-    cout<< "3. ´¡¤J25«áªºvec: ";
+    // 3. ä½¿ç”¨ std::find æ­é… iteratorï¼Œåœ¨ vec ä¸­æ‰¾åˆ°æ•¸å€¼ 30 çš„ä½ç½®ï¼Œä¸¦åœ¨è©²ä½ç½®ã€Œä¹‹å‰ã€æ’å…¥æ–°å…ƒç´  25ï¼Œ
+    //    æ¥è‘—å°å‡ºæ’å…¥å¾Œ vec çš„å®Œæ•´å…§å®¹ã€‚ï¼ˆé ˆæ³¨æ„ insert å¾Œ iterator å¤±æ•ˆçš„å•é¡Œï¼‰
+    cout<< "3. æ’å…¥25å¾Œçš„vec: ";
     vector<int>::iterator pos=find(vec.begin(), vec.end(), 30);
     vec.insert(pos, 25);
     for (auto it=vec.begin(); it!=vec.end(); ++it){
@@ -35,11 +35,11 @@ int main(){
     cout<<endl;
 
 
-    // 4. ¨Ï¥Î iterator ¹M¾ú scores¡A±N©Ò¦³¦¨ÁZ§C©ó 70 ¤Àªº¾Ç¥Í§R°£¡A
-    //    ¨Ã¥¿½T³B²z map::erase ¾É­Pªº iterator ¥¢®Ä°İÃD¡A³Ì«á¦L¥X³Ñ¾l¾Ç¥Í¸ê®Æ¡C
-    cout<< "4. §R°£«áªºscores: ";
+    // 4. ä½¿ç”¨ iterator éæ­· scoresï¼Œå°‡æ‰€æœ‰æˆç¸¾ä½æ–¼ 70 åˆ†çš„å­¸ç”Ÿåˆªé™¤ï¼Œ
+    //    ä¸¦æ­£ç¢ºè™•ç† map::erase å°è‡´çš„ iterator å¤±æ•ˆå•é¡Œï¼Œæœ€å¾Œå°å‡ºå‰©é¤˜å­¸ç”Ÿè³‡æ–™ã€‚
+    cout<< "4. åˆªé™¤å¾Œçš„scores: ";
 
-    // 4-1 §Q¥Îscores.erase(iterator)·|¦^¶Ç³Q§R°£ªº¤¸¯Àªº¤U¤@­Ó¤¸¯Àªº­¡¥N¾¹ªº¯S©Ê
+    // 4-1 åˆ©ç”¨scores.erase(iterator)æœƒå›å‚³è¢«åˆªé™¤çš„å…ƒç´ çš„ä¸‹ä¸€å€‹å…ƒç´ çš„è¿­ä»£å™¨çš„ç‰¹æ€§
     for (auto it=scores.begin(); it!=scores.end();){
         if (it->second<70){
             it = scores.erase(it);
@@ -48,29 +48,29 @@ int main(){
             ++it;
         }
     }
-    //¹M¾ú
+    //éæ­·
     for (auto it=scores.begin(); it!=scores.end(); ++it){
         cout<< it->first << ':' << it->second << ' ';
     }
     cout<<endl;
 
-    //ªì©l¤Æ
+    //åˆå§‹åŒ–
     scores = {{"Alice",85},{"Bob",70},{"Carol",92},{"David",60}};
 
-    // 4-2 §Ú¹Á¸Õ¨Ï¥Î¤Ï¦V­¡¥N¾¹¨Ó¹M¾ú¨Ã§R°£
-    cout<< "4. §R°£«áªºscores: ";
+    // 4-2 æˆ‘å˜—è©¦ä½¿ç”¨åå‘è¿­ä»£å™¨ä¾†éæ­·ä¸¦åˆªé™¤
+    cout<< "4. åˆªé™¤å¾Œçš„scores: ";
     for (auto it=scores.rbegin(); it!=scores.rend(); ++it){
-        if (it->second<70) scores.erase(it->first); //³o¸Ì¥Î«ü©wkeyªº¤è¦¡§R°£
+        if (it->second<70) scores.erase(it->first); //é€™è£¡ç”¨æŒ‡å®škeyçš„æ–¹å¼åˆªé™¤
     }
-    //¹M¾ú
+    //éæ­·
     for (auto it=scores.begin(); it!=scores.end(); ++it){
         cout<< it->first << ':' << it->second << ' ';
     }
     cout<<endl;
 
 
-    //5. ¨Ï¥Î std::accumulate ·f°t iterator¡A­pºâ vec ©Ò¦³¤¸¯ÀªºÁ`©M¨Ã¦L¥X
-    cout<<"5. vecÁ`©M: ";
+    //5. ä½¿ç”¨ std::accumulate æ­é… iteratorï¼Œè¨ˆç®— vec æ‰€æœ‰å…ƒç´ çš„ç¸½å’Œä¸¦å°å‡º
+    cout<<"5. vecç¸½å’Œ: ";
     cout<< accumulate(vec.begin(), vec.end(), 0) <<endl;
 
     return 0;

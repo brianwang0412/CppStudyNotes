@@ -1,27 +1,27 @@
 /*
-ÃD¥Ø¡G¾Ç¥Í¦¨ÁZ±Æ¦æº]
+é¡Œç›®ï¼šå­¸ç”Ÿæˆç¸¾æ’è¡Œæ¦œ
 
-½Ğ¼¶¼g¤@­Óµ{¦¡¡A§¹¦¨¥H¤U¥\¯à¡G
+è«‹æ’°å¯«ä¸€å€‹ç¨‹å¼ï¼Œå®Œæˆä»¥ä¸‹åŠŸèƒ½ï¼š
 
-©w¸q¤@­Ó vector<pair<string, pair<int, double>>> Àx¦s¾Ç¥Í¸ê®Æ¡A¨Cµ§¸ê®Æ¬°¡G
-first¡G¾Ç¥Í©m¦W¡]string¡^
-second.first¡G¾Ç¥Íªº¯Z¯Å®y¸¹¡]int¡^
-second.second¡G¾Ç¥ÍªºÁ`¦¨ÁZ¡]double¡^
-¨Ï¥Î¥H¤U¸ê®Æªì©l¤Æ¡]¥i¥Î¥ô¦ó¦Xªkªº pair «Øºc¤è¦¡¡^¡G
+å®šç¾©ä¸€å€‹ vector<pair<string, pair<int, double>>> å„²å­˜å­¸ç”Ÿè³‡æ–™ï¼Œæ¯ç­†è³‡æ–™ç‚ºï¼š
+firstï¼šå­¸ç”Ÿå§“åï¼ˆstringï¼‰
+second.firstï¼šå­¸ç”Ÿçš„ç­ç´šåº§è™Ÿï¼ˆintï¼‰
+second.secondï¼šå­¸ç”Ÿçš„ç¸½æˆç¸¾ï¼ˆdoubleï¼‰
+ä½¿ç”¨ä»¥ä¸‹è³‡æ–™åˆå§‹åŒ–ï¼ˆå¯ç”¨ä»»ä½•åˆæ³•çš„ pair å»ºæ§‹æ–¹å¼ï¼‰ï¼š
 ("Alice", 3, 88.5)
 ("Bob", 1, 92.0)
 ("Cathy", 2, 92.0)
 ("David", 5, 76.5)
-¼¶¼g±Æ§Ç³W«h¡A±N¾Ç¥Í¨Ì·Ó¡uÁ`¦¨ÁZ¥Ñ°ª¨ì§C¡v±Æ§Ç¡F­Y¦¨ÁZ¬Û¦P¡A«h¨Ì·Ó¡u®y¸¹¥Ñ¤p¨ì¤j¡v±Æ§Ç¡C¡]´£¥Ü¡G«ä¦Ò¯à§_¥u¾a pair ¹w³]¤ñ¸û¹Bºâ¤l§¹¦¨¡A©Î»İ­n¦Û­q comparator¡^
-¨Ï¥Îµ²ºc¤Æ¸j©w¡]C++17¡^¦L¥X±Æ§Ç«áªº¦W¦¸¡B©m¦W¡B®y¸¹¡B¦¨ÁZ¡A®æ¦¡¦p¤U¡G
-²Ä1¦W: Bob (®y¸¹1) ¦¨ÁZ: 92
-²Ä2¦W: Cathy (®y¸¹2) ¦¨ÁZ: 92
-²Ä3¦W: Alice (®y¸¹3) ¦¨ÁZ: 88.5
-²Ä4¦W: David (®y¸¹5) ¦¨ÁZ: 76.5
-ÃB¥~¬D¾Ô¡G¼g¤@­Ó¨ç¦¡ pair<string, double> findTopStudent(const vector<pair<string, pair<int, double>>>& students)¦^¶Ç¦¨ÁZ³Ì°ªªº¾Ç¥Í©m¦W»P¦¨ÁZ¡]­Y¦³¨Ã¦C¡A¦^¶Ç®y¸¹³Ì¤pªÌ¡^¡C
+æ’°å¯«æ’åºè¦å‰‡ï¼Œå°‡å­¸ç”Ÿä¾ç…§ã€Œç¸½æˆç¸¾ç”±é«˜åˆ°ä½ã€æ’åºï¼›è‹¥æˆç¸¾ç›¸åŒï¼Œå‰‡ä¾ç…§ã€Œåº§è™Ÿç”±å°åˆ°å¤§ã€æ’åºã€‚ï¼ˆæç¤ºï¼šæ€è€ƒèƒ½å¦åªé  pair é è¨­æ¯”è¼ƒé‹ç®—å­å®Œæˆï¼Œæˆ–éœ€è¦è‡ªè¨‚ comparatorï¼‰
+ä½¿ç”¨çµæ§‹åŒ–ç¶å®šï¼ˆC++17ï¼‰å°å‡ºæ’åºå¾Œçš„åæ¬¡ã€å§“åã€åº§è™Ÿã€æˆç¸¾ï¼Œæ ¼å¼å¦‚ä¸‹ï¼š
+ç¬¬1å: Bob (åº§è™Ÿ1) æˆç¸¾: 92
+ç¬¬2å: Cathy (åº§è™Ÿ2) æˆç¸¾: 92
+ç¬¬3å: Alice (åº§è™Ÿ3) æˆç¸¾: 88.5
+ç¬¬4å: David (åº§è™Ÿ5) æˆç¸¾: 76.5
+é¡å¤–æŒ‘æˆ°ï¼šå¯«ä¸€å€‹å‡½å¼ pair<string, double> findTopStudent(const vector<pair<string, pair<int, double>>>& students)å›å‚³æˆç¸¾æœ€é«˜çš„å­¸ç”Ÿå§“åèˆ‡æˆç¸¾ï¼ˆè‹¥æœ‰ä¸¦åˆ—ï¼Œå›å‚³åº§è™Ÿæœ€å°è€…ï¼‰ã€‚
 */
 
-//§Úªº°µªk
+//æˆ‘çš„åšæ³•
 #include<iostream>
 #include<utility>
 #include<algorithm>
@@ -36,38 +36,38 @@ bool cmp(pair<string, pair<int, double>>& A, pair<string, pair<int, double>>& B)
 pair<string, double> findTopStudent(const vector<pair<string, pair<int, double>>>& students);
 
 int main(){
-    // ¨BÆJ1: ©w¸q
+    // æ­¥é©Ÿ1: å®šç¾©
     vector< pair<string, pair<int, double>> > v;
 
-    // ¨BÆJ2: ªì©l¤Æ
+    // æ­¥é©Ÿ2: åˆå§‹åŒ–
     v.push_back(make_pair("Alice", make_pair(3, 88.5)));
     v.push_back(make_pair("Bob",   make_pair(1, 92.0)));
     v.push_back(make_pair("Cathy", make_pair(2, 92.0)));
     v.push_back(make_pair("David", make_pair(5, 76.5)));
 
-    // ¨BÆJ3: ±Æ§Ç(§Ú¨Ï¥Î¦Û­qªºcmp¤ñ¸û¦¨ÁZ°ª§C)
+    // æ­¥é©Ÿ3: æ’åº(æˆ‘ä½¿ç”¨è‡ªè¨‚çš„cmpæ¯”è¼ƒæˆç¸¾é«˜ä½)
     sort(v.begin(), v.end(), cmp);
 
-    // ¨BÆJ4: ¨Ï¥ÎC++17«á¤~¦³ªºµ²ºc¤Æ¸j©w¿é¥X
-    // ª`·N: ¤£¯àª½±µ¼gfor (auto [name, [number, score]] : v)¡Aµ²ºc¤Æ¸j©w¤£¤ä´©±_ª¬»yªk
+    // æ­¥é©Ÿ4: ä½¿ç”¨C++17å¾Œæ‰æœ‰çš„çµæ§‹åŒ–ç¶å®šè¼¸å‡º
+    // æ³¨æ„: ä¸èƒ½ç›´æ¥å¯«for (auto [name, [number, score]] : v)ï¼Œçµæ§‹åŒ–ç¶å®šä¸æ”¯æ´å·¢ç‹€èªæ³•
     int rank=1;
     for (auto [name, info] : v){
         auto [number, score] = info;
-        cout<<"²Ä"<<rank<<"¦W: "<<name<<" (®y¸¹"<<number<<") ¦¨ÁZ: "<<score<<endl;
+        cout<<"ç¬¬"<<rank<<"å: "<<name<<" (åº§è™Ÿ"<<number<<") æˆç¸¾: "<<score<<endl;
         ++rank;
     }
     /*
-    ¿é¥X:
-    ²Ä1¦W: Bob (®y¸¹1) ¦¨ÁZ: 92
-    ²Ä2¦W: Cathy (®y¸¹2) ¦¨ÁZ: 92
-    ²Ä3¦W: Alice (®y¸¹3) ¦¨ÁZ: 88.5
-    ²Ä4¦W: David (®y¸¹5) ¦¨ÁZ: 76.5
+    è¼¸å‡º:
+    ç¬¬1å: Bob (åº§è™Ÿ1) æˆç¸¾: 92
+    ç¬¬2å: Cathy (åº§è™Ÿ2) æˆç¸¾: 92
+    ç¬¬3å: Alice (åº§è™Ÿ3) æˆç¸¾: 88.5
+    ç¬¬4å: David (åº§è™Ÿ5) æˆç¸¾: 76.5
     */
 
-    // ÃB¥~¬D¾Ô
+    // é¡å¤–æŒ‘æˆ°
     auto TopStudentInfo = findTopStudent(v);
-    cout<<"Name: "<< TopStudentInfo.first<<endl;   //¿é¥X: Bob
-    cout<<"Score: "<< TopStudentInfo.second<<endl; //¿é¥X: 92
+    cout<<"Name: "<< TopStudentInfo.first<<endl;   //è¼¸å‡º: Bob
+    cout<<"Score: "<< TopStudentInfo.second<<endl; //è¼¸å‡º: 92
 }
 
 pair<string, double> findTopStudent(const vector<pair<string, pair<int, double>>>& students){

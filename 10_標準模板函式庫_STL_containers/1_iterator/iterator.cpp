@@ -4,220 +4,220 @@
 using namespace std;
 
 /*
-«e¨¥: iterator(­¡¥N¾¹)ªºÂ²¤¶»P§@¥Î
+å‰è¨€: iterator(è¿­ä»£å™¨)çš„ç°¡ä»‹èˆ‡ä½œç”¨
 
-iterator(­¡¥N¾¹)¬O¤@ºØÃş«ü¼Ğ¡]pointer-like¡^ªºª«¥ó¡A«ü¦V STL container ªº¤¸¯À
-»Ppointer(«ü¼Ğ)¤£¦Pªº¬O¡Aiterator(­¡¥N¾¹)¯à°÷³B²z«D³sÄò°O¾ĞÅéªº®e¾¹(¦p: map, list, unordered_set)
+iterator(è¿­ä»£å™¨)æ˜¯ä¸€ç¨®é¡æŒ‡æ¨™ï¼ˆpointer-likeï¼‰çš„ç‰©ä»¶ï¼ŒæŒ‡å‘ STL container çš„å…ƒç´ 
+èˆ‡pointer(æŒ‡æ¨™)ä¸åŒçš„æ˜¯ï¼Œiterator(è¿­ä»£å™¨)èƒ½å¤ è™•ç†éé€£çºŒè¨˜æ†¶é«”çš„å®¹å™¨(å¦‚: map, list, unordered_set)
 
-§Ú­Ì¥i¥H¨Ï¥Î­¡¥N¾¹¨Ó¡u¥H¬Û¦P/²Î¤@ªº¤è¦¡¦s¨ú¡v¦UºØ®e¾¹
-¤£½×¬O¡u³sÄò°O¾ĞÅé¡vÁÙ¬O¡u¤£³sÄò°O¾ĞÅé¡v³£¥i¥H
+æˆ‘å€‘å¯ä»¥ä½¿ç”¨è¿­ä»£å™¨ä¾†ã€Œä»¥ç›¸åŒ/çµ±ä¸€çš„æ–¹å¼å­˜å–ã€å„ç¨®å®¹å™¨
+ä¸è«–æ˜¯ã€Œé€£çºŒè¨˜æ†¶é«”ã€é‚„æ˜¯ã€Œä¸é€£çºŒè¨˜æ†¶é«”ã€éƒ½å¯ä»¥
 
-§A¥i¥H¸ÕµÛ·Q·Q¸Ó¦p¦ó¹M¾ú¤@­ÓÁä­È¹ï(key-value)ªº®e¾¹(¦pmap¡A§YPython¤¤ªºDictionary)
+ä½ å¯ä»¥è©¦è‘—æƒ³æƒ³è©²å¦‚ä½•éæ­·ä¸€å€‹éµå€¼å°(key-value)çš„å®¹å™¨(å¦‚mapï¼Œå³Pythonä¸­çš„Dictionary)
 */
 
 int main(){
-{cout<<"¡m¨Ï¥Î iterator ¨«³X vector (³sÄò°O¾ĞÅé®e¾¹)¡n"<<endl;
+{cout<<"ã€Šä½¿ç”¨ iterator èµ°è¨ª vector (é€£çºŒè¨˜æ†¶é«”å®¹å™¨)ã€‹"<<endl;
     
-    //¡m¨Ï¥Î iterator ¨«³X vector (³sÄò°O¾ĞÅé®e¾¹)¡n
+    //ã€Šä½¿ç”¨ iterator èµ°è¨ª vector (é€£çºŒè¨˜æ†¶é«”å®¹å™¨)ã€‹
 
     vector <int> v = {1, 2, 3, 4, 5};
 
-    {// 1. «Å§i­¡¥N¾¹
+    {// 1. å®£å‘Šè¿­ä»£å™¨
     vector<int>::iterator it = v.begin();
-    // ¤]¥i¥H¼g¬° auto it = v.begin();
+    // ä¹Ÿå¯ä»¥å¯«ç‚º auto it = v.begin();
     
 
-    // 2. °ò¥»¨«³X¾Ş§@
+    // 2. åŸºæœ¬èµ°è¨ªæ“ä½œ
 
-    // ¡q *it ¡r	¨ú¥X¥Ø«e¦ì¸mªº¤¸¯À¡C
-    // ¡q ++it ¡r	²¾°Ê¨ì¤U¤@­Ó¤¸¯À¡C
+    // ã€ˆ *it ã€‰	å–å‡ºç›®å‰ä½ç½®çš„å…ƒç´ ã€‚
+    // ã€ˆ ++it ã€‰	ç§»å‹•åˆ°ä¸‹ä¸€å€‹å…ƒç´ ã€‚
 
-    cout << *it <<endl;  // ¿é¥X: 1 (v.begin()¦ì¸mªº¤¸¯À¡A§Y²Ä¤@­Ó¤¸¯À)
-    ++it; // ²¾°Ê¨ì¤U¤@­Ó¦ì¸m
-    cout << *it <<endl;  // ¿é¥X: 2 (²Ä¤G­Ó¤¸¯À)
+    cout << *it <<endl;  // è¼¸å‡º: 1 (v.begin()ä½ç½®çš„å…ƒç´ ï¼Œå³ç¬¬ä¸€å€‹å…ƒç´ )
+    ++it; // ç§»å‹•åˆ°ä¸‹ä¸€å€‹ä½ç½®
+    cout << *it <<endl;  // è¼¸å‡º: 2 (ç¬¬äºŒå€‹å…ƒç´ )
 
-    // ¡q it1==it2 ¡r ¤ñ¸û¨â­Ó­¡¥N¾¹¬O§_«ü¦V¦P¤@¦ì¸m
+    // ã€ˆ it1==it2 ã€‰ æ¯”è¼ƒå…©å€‹è¿­ä»£å™¨æ˜¯å¦æŒ‡å‘åŒä¸€ä½ç½®
     auto it1 = v.begin();
     auto it2 = v.begin();
 
-    cout<< (it1==it2) <<endl;  // ¿é¥X: 1 (ªí¥Ü¨âªÌ«ü¦V¬Û¦P¦ì¸m)
+    cout<< (it1==it2) <<endl;  // è¼¸å‡º: 1 (è¡¨ç¤ºå…©è€…æŒ‡å‘ç›¸åŒä½ç½®)
     ++it1;
-    it1++;   // ³q¹L¨â¦¸²¾°ÊÅı it1 «ü¦V²Ä¤T­Ó¦ì¸m
-    cout<< (it1==it2) <<endl;  // ¿é¥X: 0 (ªí¥Ü¨âªÌ«ü¦V¤£¦P¦ì¸m)
-    ++++it2; // ³q¹L¨â¦¸²¾°ÊÅı it2 «ü¦V²Ä¤T­Ó¦ì¸m
-    cout<< (it1==it2) <<endl;  // ¿é¥X: 1 (ªí¥Ü¨âªÌ«ü¦V¬Û¦P¦ì¸m)
+    it1++;   // é€šéå…©æ¬¡ç§»å‹•è®“ it1 æŒ‡å‘ç¬¬ä¸‰å€‹ä½ç½®
+    cout<< (it1==it2) <<endl;  // è¼¸å‡º: 0 (è¡¨ç¤ºå…©è€…æŒ‡å‘ä¸åŒä½ç½®)
+    ++++it2; // é€šéå…©æ¬¡ç§»å‹•è®“ it2 æŒ‡å‘ç¬¬ä¸‰å€‹ä½ç½®
+    cout<< (it1==it2) <<endl;  // è¼¸å‡º: 1 (è¡¨ç¤ºå…©è€…æŒ‡å‘ç›¸åŒä½ç½®)
     
-    // ¥Î iterator »P for°j°é ¹M¾ú vector
+    // ç”¨ iterator èˆ‡ forè¿´åœˆ éæ­· vector
     for (vector<int>::iterator it=v.begin() ; it!=v.end() ; ++it){
         cout<< *it << ' ';
     }
     cout<<endl;
-    // ¿é¥X: 1 2 3 4 5 
+    // è¼¸å‡º: 1 2 3 4 5 
 
-    // ¸É¥R: °ßÅª­¡¥N¾¹(const iterator)
-    // ¥u¯àÅª¨ú¡AµLªk­×§ï
+    // è£œå……: å”¯è®€è¿­ä»£å™¨(const iterator)
+    // åªèƒ½è®€å–ï¼Œç„¡æ³•ä¿®æ”¹
     for (vector<int>::const_iterator cit=v.cbegin(); cit!=v.cend(); ++cit){
         cout<< *cit << ' ';
     }
     cout<<endl;
-    //¿é¥X: 1 2 3 4 5
+    //è¼¸å‡º: 1 2 3 4 5
 }
-cout<<("====================================\n");// ¤À¹j½u
+cout<<("====================================\n");// åˆ†éš”ç·š
 
-    // ÀH¾÷¦s¨ú­¡¥N¾¹(Random Access Iterator)
-    // ³o¬O³sÄò°O¾ĞÅé®e¾¹ªº¨å«¬­¡¥N¾¹¡A¯S¦â¬O¤£»İ­n³v®æ¨«³X¡A¥i¥H¸õµÛ¨«(it+n / it-n)
+    // éš¨æ©Ÿå­˜å–è¿­ä»£å™¨(Random Access Iterator)
+    // é€™æ˜¯é€£çºŒè¨˜æ†¶é«”å®¹å™¨çš„å…¸å‹è¿­ä»£å™¨ï¼Œç‰¹è‰²æ˜¯ä¸éœ€è¦é€æ ¼èµ°è¨ªï¼Œå¯ä»¥è·³è‘—èµ°(it+n / it-n)
 
     v = {1,2,3,4,5,6,7,8,9};
     vector<int>::iterator it=v.begin();
-    cout<< *it     <<endl;  //¿é¥X: 1
-    cout<< *(it+3) <<endl;  //¿é¥X: 4
+    cout<< *it     <<endl;  //è¼¸å‡º: 1
+    cout<< *(it+3) <<endl;  //è¼¸å‡º: 4
     
-    // ¥i¥H¤@¦¸«e¶i¤­®æ
+    // å¯ä»¥ä¸€æ¬¡å‰é€²äº”æ ¼
     it += 5;
-    cout<< *it <<endl;  //¿é¥X: 6
+    cout<< *it <<endl;  //è¼¸å‡º: 6
 
-    // ¥i¥H¥Î operator[] ¨Ó¦s¨ú(¥H·í«e«ü¦Vªº¤¸¯À¦ì¸m§@¬° it[0])
-    cout<< it[0] <<endl;  //¿é¥X: 6
-    cout<< it[1] <<endl;  //¿é¥X: 7
-    cout<< it[-1] <<endl; //¿é¥X: 5
+    // å¯ä»¥ç”¨ operator[] ä¾†å­˜å–(ä»¥ç•¶å‰æŒ‡å‘çš„å…ƒç´ ä½ç½®ä½œç‚º it[0])
+    cout<< it[0] <<endl;  //è¼¸å‡º: 6
+    cout<< it[1] <<endl;  //è¼¸å‡º: 7
+    cout<< it[-1] <<endl; //è¼¸å‡º: 5
 
     vector<int> v2 = {5,4,3,2,1};
     auto it1=v2.begin();
     auto it2=v2.end()-1;
 
-    cout << (it1<it2) <<endl;  //¿é¥X: 1  (ªí¥Üit1¦bit2¤§«e)
-    //³o¸Ì¤ñªº¬O­¡¥N¾¹©Ò«ü¦Vªº¡u¦ì¸m¡v¦b§Ç¦C¤¤ªº¥ı«á¶¶§Ç(§Yit1¬O§_¦bit2¤§«e)¡A»P¤¸¯À­ÈµLÃö
+    cout << (it1<it2) <<endl;  //è¼¸å‡º: 1  (è¡¨ç¤ºit1åœ¨it2ä¹‹å‰)
+    //é€™è£¡æ¯”çš„æ˜¯è¿­ä»£å™¨æ‰€æŒ‡å‘çš„ã€Œä½ç½®ã€åœ¨åºåˆ—ä¸­çš„å…ˆå¾Œé †åº(å³it1æ˜¯å¦åœ¨it2ä¹‹å‰)ï¼Œèˆ‡å…ƒç´ å€¼ç„¡é—œ
 
-    // ­pºâ¨â­Óiterator¶¡ªº¶ZÂ÷
-    cout<< v2.end() - v2.begin() <<endl;  //¿é¥X: 5  (ªí¥Üv2¦³¤­­Ó¤¸¯À)
+    // è¨ˆç®—å…©å€‹iteratoré–“çš„è·é›¢
+    cout<< v2.end() - v2.begin() <<endl;  //è¼¸å‡º: 5  (è¡¨ç¤ºv2æœ‰äº”å€‹å…ƒç´ )
 
-cout<<("====================================\n");// ¤À¹j½u
+cout<<("====================================\n");// åˆ†éš”ç·š
 
-    // 3. ¤Ï¦V¨«³X
+    // 3. åå‘èµ°è¨ª
 
     v = {1,2,3,4,5,6,7,8,9};
 
-    // «Å§i¤Ï¦V­¡¥N¾¹
+    // å®£å‘Šåå‘è¿­ä»£å™¨
     vector<int>::reverse_iterator rit = v.rbegin();
-    // ¤]¥i¥H¼g¬° auto rit = v.rbegin();
+    // ä¹Ÿå¯ä»¥å¯«ç‚º auto rit = v.rbegin();
 
-    // ¥Î ¤Ï¦V­¡¥N¾¹ »P for°j°é ¤Ï¦V¹M¾ú
+    // ç”¨ åå‘è¿­ä»£å™¨ èˆ‡ forè¿´åœˆ åå‘éæ­·
     for (rit=v.rbegin(); rit!=v.rend(); rit++){
         cout<< *rit <<' ';
     }cout<<endl;
-    // ¿é¥X: 9 8 7 6 5 4 3 2 1 
+    // è¼¸å‡º: 9 8 7 6 5 4 3 2 1 
     
-    // ¥Î ¤@¯ë­¡¥N¾¹ »P for°j°é ¤Ï¦V¹M¾ú
+    // ç”¨ ä¸€èˆ¬è¿­ä»£å™¨ èˆ‡ forè¿´åœˆ åå‘éæ­·
     for (auto it_2=v.end(); it_2!=v.begin(); ){
         --it_2;
         cout<< *it_2 <<' ';
     }cout<<endl;
-    // ¿é¥X: 9 8 7 6 5 4 3 2 1
+    // è¼¸å‡º: 9 8 7 6 5 4 3 2 1
 
 
 }
-cout<<("====================================================\n");// ¤À¹j½u
-{cout<<"¡m¨Ï¥Î iterator ¨«³X map (¤£³sÄò°O¾ĞÅé®e¾¹)¡n" <<endl;
+cout<<("====================================================\n");// åˆ†éš”ç·š
+{cout<<"ã€Šä½¿ç”¨ iterator èµ°è¨ª map (ä¸é€£çºŒè¨˜æ†¶é«”å®¹å™¨)ã€‹" <<endl;
 
-    //¡m¨Ï¥Î iterator ¨«³X map (¤£³sÄò°O¾ĞÅé®e¾¹)¡n
-    // ÃöÁä­­¨î¡G¤£¤ä´© it + n¡Bit[n]¡Bit < other µ¥ Random Access ¾Ş§@¡C
+    //ã€Šä½¿ç”¨ iterator èµ°è¨ª map (ä¸é€£çºŒè¨˜æ†¶é«”å®¹å™¨)ã€‹
+    // é—œéµé™åˆ¶ï¼šä¸æ”¯æ´ it + nã€it[n]ã€it < other ç­‰ Random Access æ“ä½œã€‚
     map<string,int> m = {{"Alice",85},{"Bob",70},{"Carol",92},{"David",60},{"Eve",78}};
 
-    {// 1. «Å§i­¡¥N¾¹
+    {// 1. å®£å‘Šè¿­ä»£å™¨
     map<string,int>::iterator it = m.begin();
-    // ¤]¥i¥H¼g¬° auto it = m.begin();
+    // ä¹Ÿå¯ä»¥å¯«ç‚º auto it = m.begin();
 
-    // 2. °ò¥»¨«³X¾Ş§@
+    // 2. åŸºæœ¬èµ°è¨ªæ“ä½œ
 
-    // ¡q *it ¡r    ¨ú¥X¥Ø«e¦ì¸mªº¤¸¯À¡A«¬§O¬O pair<const string,int>
-    // ¡q it->first / it->second ¡r  ¤À§O¨ú¥X key »P value
-    // ¡q ++it ¡r    ²¾°Ê¨ì¤U¤@­Ó¤¸¯À(ª`·N¡G¬O¨Ì·Ókey±Æ§Ç«áªº¤U¤@­Ó¡A¤£¬O´¡¤J¶¶§Ç)
+    // ã€ˆ *it ã€‰    å–å‡ºç›®å‰ä½ç½®çš„å…ƒç´ ï¼Œå‹åˆ¥æ˜¯ pair<const string,int>
+    // ã€ˆ it->first / it->second ã€‰  åˆ†åˆ¥å–å‡º key èˆ‡ value
+    // ã€ˆ ++it ã€‰    ç§»å‹•åˆ°ä¸‹ä¸€å€‹å…ƒç´ (æ³¨æ„ï¼šæ˜¯ä¾ç…§keyæ’åºå¾Œçš„ä¸‹ä¸€å€‹ï¼Œä¸æ˜¯æ’å…¥é †åº)
 
-    cout << it->first << ":" << it->second << endl;  // ¿é¥X: Alice:85 (m.begin()¦ì¸mªº¤¸¯À¡Akey±Æ§Ç«á³Ì¤pªº)
-    ++it; // ²¾°Ê¨ì¤U¤@­Ó¦ì¸m
-    cout << it->first << ":" << it->second << endl;  // ¿é¥X: Bob:70 (key±Æ§Ç«á²Ä¤G¤pªº)
+    cout << it->first << ":" << it->second << endl;  // è¼¸å‡º: Alice:85 (m.begin()ä½ç½®çš„å…ƒç´ ï¼Œkeyæ’åºå¾Œæœ€å°çš„)
+    ++it; // ç§»å‹•åˆ°ä¸‹ä¸€å€‹ä½ç½®
+    cout << it->first << ":" << it->second << endl;  // è¼¸å‡º: Bob:70 (keyæ’åºå¾Œç¬¬äºŒå°çš„)
 
-    // ¡q it1==it2 ¡r ¤ñ¸û¨â­Ó­¡¥N¾¹¬O§_«ü¦V¦P¤@¦ì¸m
+    // ã€ˆ it1==it2 ã€‰ æ¯”è¼ƒå…©å€‹è¿­ä»£å™¨æ˜¯å¦æŒ‡å‘åŒä¸€ä½ç½®
     auto it1 = m.begin();
     auto it2 = m.begin();
 
-    cout<< (it1==it2) <<endl;  // ¿é¥X: 1 (ªí¥Ü¨âªÌ«ü¦V¬Û¦P¦ì¸m)
+    cout<< (it1==it2) <<endl;  // è¼¸å‡º: 1 (è¡¨ç¤ºå…©è€…æŒ‡å‘ç›¸åŒä½ç½®)
     ++it1;
-    it1++;   // ³q¹L¨â¦¸²¾°ÊÅı it1 «ü¦V²Ä¤T­Ó¦ì¸m(¨Ìkey±Æ§Ç)
-    cout<< (it1==it2) <<endl;  // ¿é¥X: 0 (ªí¥Ü¨âªÌ«ü¦V¤£¦P¦ì¸m)
-    ++++it2; // ³q¹L¨â¦¸²¾°ÊÅı it2 «ü¦V²Ä¤T­Ó¦ì¸m
-    cout<< (it1==it2) <<endl;  // ¿é¥X: 1 (ªí¥Ü¨âªÌ«ü¦V¬Û¦P¦ì¸m)
+    it1++;   // é€šéå…©æ¬¡ç§»å‹•è®“ it1 æŒ‡å‘ç¬¬ä¸‰å€‹ä½ç½®(ä¾keyæ’åº)
+    cout<< (it1==it2) <<endl;  // è¼¸å‡º: 0 (è¡¨ç¤ºå…©è€…æŒ‡å‘ä¸åŒä½ç½®)
+    ++++it2; // é€šéå…©æ¬¡ç§»å‹•è®“ it2 æŒ‡å‘ç¬¬ä¸‰å€‹ä½ç½®
+    cout<< (it1==it2) <<endl;  // è¼¸å‡º: 1 (è¡¨ç¤ºå…©è€…æŒ‡å‘ç›¸åŒä½ç½®)
 
-    // ¥Î iterator »P for°j°é ¹M¾ú map
+    // ç”¨ iterator èˆ‡ forè¿´åœˆ éæ­· map
     for (map<string,int>::iterator it=m.begin() ; it!=m.end() ; ++it){
         cout<< it->first << ":" << it->second << ' ';
     }
     cout<<endl;
-    // ¿é¥X: Alice:85 Bob:70 Carol:92 David:60 Eve:78
-    // ª`·N¡G³o­Ó¶¶§Ç¬O"keyªº¦r¥À±Æ§Ç"¡A¨Ã«D­ì¥» {"Alice",85},{"Bob",70},... ªº´¡¤J¶¶§Ç
-    //       (ÁöµM¥»¨Ò«ê¦n´¡¤J¶¶§Ç»P¦r¥À§Ç¬Û¦P¡A¦ı³o¥u¬O¥©¦X)
+    // è¼¸å‡º: Alice:85 Bob:70 Carol:92 David:60 Eve:78
+    // æ³¨æ„ï¼šé€™å€‹é †åºæ˜¯"keyçš„å­—æ¯æ’åº"ï¼Œä¸¦éåŸæœ¬ {"Alice",85},{"Bob",70},... çš„æ’å…¥é †åº
+    //       (é›–ç„¶æœ¬ä¾‹æ°å¥½æ’å…¥é †åºèˆ‡å­—æ¯åºç›¸åŒï¼Œä½†é€™åªæ˜¯å·§åˆ)
     }
 
-cout<<("====================================\n");// ¤À¹j½u
+cout<<("====================================\n");// åˆ†éš”ç·š
 
-    // Âù¦V­¡¥N¾¹(Bidirectional Iterator)
-    // ³o¬O¤£³sÄò°O¾ĞÅé®e¾¹ªº¨å«¬­¡¥N¾¹¡A¯S¦â¬O"¥u¯à"³v®æ¨«³X(++it / --it)¡A¤£¯à¸õµÛ¨«
+    // é›™å‘è¿­ä»£å™¨(Bidirectional Iterator)
+    // é€™æ˜¯ä¸é€£çºŒè¨˜æ†¶é«”å®¹å™¨çš„å…¸å‹è¿­ä»£å™¨ï¼Œç‰¹è‰²æ˜¯"åªèƒ½"é€æ ¼èµ°è¨ª(++it / --it)ï¼Œä¸èƒ½è·³è‘—èµ°
 
     map<string,int>::iterator it = m.begin();
-    cout<< it->first <<endl;  //¿é¥X: Alice
+    cout<< it->first <<endl;  //è¼¸å‡º: Alice
 
-    // it = it + 3; ¬O¤£¦Xªkªº
-    // map::iterator ¨S¦³©w¸q operator+¡A¦]¬°¬õ¶Â¾ğ¸`ÂI°O¾ĞÅé¤£³sÄò¡AµLªk¥Î¦ì§}¹Bºâ¸õÅD
+    // it = it + 3; æ˜¯ä¸åˆæ³•çš„
+    // map::iterator æ²’æœ‰å®šç¾© operator+ï¼Œå› ç‚ºç´…é»‘æ¨¹ç¯€é»è¨˜æ†¶é«”ä¸é€£çºŒï¼Œç„¡æ³•ç”¨ä½å€é‹ç®—è·³èº
 
-    // ·Q­n"«e¶in¨B"¡A¥²¶·¥Î std::advance¡A¤º³¡·|³v®æ©I¥s ++it¡A®É¶¡½ÆÂø«× O(n)
+    // æƒ³è¦"å‰é€²næ­¥"ï¼Œå¿…é ˆç”¨ std::advanceï¼Œå…§éƒ¨æœƒé€æ ¼å‘¼å« ++itï¼Œæ™‚é–“è¤‡é›œåº¦ O(n)
     advance(it, 3);
-    cout<< it->first <<endl;  //¿é¥X: David (±qAlice©¹«e¼Æ3¨B¡GAlice¡÷Bob¡÷Carol¡÷David)
+    cout<< it->first <<endl;  //è¼¸å‡º: David (å¾Aliceå¾€å‰æ•¸3æ­¥ï¼šAliceâ†’Bobâ†’Carolâ†’David)
 
-    // ¤]¥i¥H¥Îadvance·f°t­t¼Æ"«á°h"n¨B(¦]¬°map¬OBidirectional¡A¤ä´©--it)
+    // ä¹Ÿå¯ä»¥ç”¨advanceæ­é…è² æ•¸"å¾Œé€€"næ­¥(å› ç‚ºmapæ˜¯Bidirectionalï¼Œæ”¯æ´--it)
     advance(it, -1);
-    cout<< it->first <<endl;  //¿é¥X: Carol
+    cout<< it->first <<endl;  //è¼¸å‡º: Carol
 
-    // map¨S¦³ operator[](int) ³oºØ"¨Ì¬Û¹ï¦ì²¾¦s¨ú"ªº¥Îªk
-    // ¦ıª`·N¡Gmap¥»¨­¥t¦³¦Û¤vªº operator[](const Key&)¡A¬O¨Ì"key­È"¦s¨ú¡A·N¸q§¹¥ş¤£¦P
-    cout<< m["Bob"] <<endl;  //¿é¥X: 70  (³o¬Omap®e¾¹¦Û¤vªºoperator[]¡A¤£¬Oiteratorªº)
+    // mapæ²’æœ‰ operator[](int) é€™ç¨®"ä¾ç›¸å°ä½ç§»å­˜å–"çš„ç”¨æ³•
+    // ä½†æ³¨æ„ï¼šmapæœ¬èº«å¦æœ‰è‡ªå·±çš„ operator[](const Key&)ï¼Œæ˜¯ä¾"keyå€¼"å­˜å–ï¼Œæ„ç¾©å®Œå…¨ä¸åŒ
+    cout<< m["Bob"] <<endl;  //è¼¸å‡º: 70  (é€™æ˜¯mapå®¹å™¨è‡ªå·±çš„operator[]ï¼Œä¸æ˜¯iteratorçš„)
 
     map<string,int>::iterator itA = m.begin();
     map<string,int>::iterator itB = m.begin();
     advance(itB, 2);
 
-    // cout << (itA < itB) <<endl; ¬O¤£¦Xªkªº
-    // map::iterator ¨S¦³©w¸q operator<¡A¥u¯à¥Î == ©Î != §PÂ_¬O§_«ü¦V¦P¤@¦ì¸m
+    // cout << (itA < itB) <<endl; æ˜¯ä¸åˆæ³•çš„
+    // map::iterator æ²’æœ‰å®šç¾© operator<ï¼Œåªèƒ½ç”¨ == æˆ– != åˆ¤æ–·æ˜¯å¦æŒ‡å‘åŒä¸€ä½ç½®
 
-    cout<< (itA != itB) <<endl;  //¿é¥X: 1  (¥u¯à¥Î!=§PÂ_¬O§_¬°¤£¦P¦ì¸m¡AµLªk¤ñ¸û¥ı«á¤j¤p)
+    cout<< (itA != itB) <<endl;  //è¼¸å‡º: 1  (åªèƒ½ç”¨!=åˆ¤æ–·æ˜¯å¦ç‚ºä¸åŒä½ç½®ï¼Œç„¡æ³•æ¯”è¼ƒå…ˆå¾Œå¤§å°)
 
-    // ­pºâ¨â­Óiterator¶¡ªº¶ZÂ÷¡Gmap¤]¨S¦³ª½±µ¬Û´îªºoperator-
-    // ·Qª¾¹D¶ZÂ÷¡A¤@¼Ë±o¥Îstd::distance¡A¤º³¡³v®æ++¨«¹L¥h­pºâ¡A®É¶¡½ÆÂø«× O(n)
-    cout<< distance(m.begin(), m.end()) <<endl;  //¿é¥X: 5  (ªí¥Üm¦³¤­­Ó¤¸¯À)
+    // è¨ˆç®—å…©å€‹iteratoré–“çš„è·é›¢ï¼šmapä¹Ÿæ²’æœ‰ç›´æ¥ç›¸æ¸›çš„operator-
+    // æƒ³çŸ¥é“è·é›¢ï¼Œä¸€æ¨£å¾—ç”¨std::distanceï¼Œå…§éƒ¨é€æ ¼++èµ°éå»è¨ˆç®—ï¼Œæ™‚é–“è¤‡é›œåº¦ O(n)
+    cout<< distance(m.begin(), m.end()) <<endl;  //è¼¸å‡º: 5  (è¡¨ç¤ºmæœ‰äº”å€‹å…ƒç´ )
 
-cout<<("====================================\n");// ¤À¹j½u
+cout<<("====================================\n");// åˆ†éš”ç·š
 
-    // 3. ¤Ï¦V¨«³X
+    // 3. åå‘èµ°è¨ª
 
-    // «Å§i¤Ï¦V­¡¥N¾¹
+    // å®£å‘Šåå‘è¿­ä»£å™¨
     map<string,int>::reverse_iterator rit_1 = m.rbegin();
-    // ¤]¥i¥H¼g¬° auto rit = m.rbegin();
+    // ä¹Ÿå¯ä»¥å¯«ç‚º auto rit = m.rbegin();
 
-    // ¥Î ¤Ï¦V­¡¥N¾¹ »P for°j°é ¤Ï¦V¹M¾ú
+    // ç”¨ åå‘è¿­ä»£å™¨ èˆ‡ forè¿´åœˆ åå‘éæ­·
     for (auto rit_2=m.rbegin(); rit_2!=m.rend(); rit_2++){
         cout<< rit_2->first << ":" << rit_2->second << ' ';
     }cout<<endl;
-    // ¿é¥X: Eve:78 David:60 Carol:92 Bob:70 Alice:85
-    // (¨Ìkey¥Ñ¤j¨ì¤p¡A¤]´N¬O¦r¥Àªº¤Ï¦V±Æ§Ç)
+    // è¼¸å‡º: Eve:78 David:60 Carol:92 Bob:70 Alice:85
+    // (ä¾keyç”±å¤§åˆ°å°ï¼Œä¹Ÿå°±æ˜¯å­—æ¯çš„åå‘æ’åº)
 
-    // ¥Î ¤@¯ë­¡¥N¾¹ »P for°j°é ¤Ï¦V¹M¾ú
+    // ç”¨ ä¸€èˆ¬è¿­ä»£å™¨ èˆ‡ forè¿´åœˆ åå‘éæ­·
     for (auto it_2=m.end(); it_2!=m.begin(); ){
         --it_2;
         cout<< it_2->first << ":" << it_2->second << ' ';
     }cout<<endl;
-    // ¿é¥X: Eve:78 David:60 Carol:92 Bob:70 Alice:85
+    // è¼¸å‡º: Eve:78 David:60 Carol:92 Bob:70 Alice:85
 }
 }
 
-// ¥»½gµ§°O°Ñ¦Ò Claude (https://claude.ai/share/04ed6895-e42d-4309-a5a8-df932c34f439)
-// ¥»½gµ§°O°Ñ¦Ò: Luke Tseng ¡iC++µ§°O¡jIterator¡]­¡¥N¾¹¡^(https://hackmd.io/@LukeTseng/BkLL3USVex)
+// æœ¬ç¯‡ç­†è¨˜åƒè€ƒ Claude (https://claude.ai/share/04ed6895-e42d-4309-a5a8-df932c34f439)
+// æœ¬ç¯‡ç­†è¨˜åƒè€ƒ: Luke Tseng ã€C++ç­†è¨˜ã€‘Iteratorï¼ˆè¿­ä»£å™¨ï¼‰(https://hackmd.io/@LukeTseng/BkLL3USVex)
 // Created by B.J.Wang 2026/7/29
