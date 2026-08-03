@@ -1,5 +1,5 @@
 test.cpp
-.exe
+*.exe
 build/
 .vscode/
 100_other/

@@ -108,8 +108,85 @@ cout<<("======================\n");// 分隔線
     auto result_2 = mp.insert({"banana", 999});
     cout<< mp["banana"] <<endl;  // 輸出: 123
     
+
+    // 使用 mp.emplace(Key, Value) 來新增
+    // 與insert同樣不會覆蓋已有元素，並效率較insert高
+    mp.emplace("grape", 8);
+    mp.emplace("grape", 99); // key 已存在，不會覆蓋
+
+    cout << mp["grape"] << endl; // 輸出: 8
 }
 
+cout<<("======================\n");// 分隔線
+
+{
+    // 《4. 刪除》
+
+    map<string, int> mp = {{"apple", 3}, {"banana", 5}, {"cherry", 7}, {"date", 9}};
+
+    // 用 mp.erase(Key或iterator) 刪除指定元素
+
+    // 依 key 刪除
+    mp.erase("apple");           
+    // 剩下: banana=5, cherry=7, date=9
+
+    // 依 iterator 刪除
+    auto it = mp.find("banana");
+    mp.erase(it);                 
+    // 剩下: cherry=7, date=9
+
+    // 範圍刪除（此例為全部刪除）
+    mp.erase(mp.begin(), mp.end());     
+    // 剩下: 空的
+
+    cout << mp.size() << endl;    // 輸出: 0
+
+
+    // 用 mp.clear() 清空整個map
+
+    mp = {{"apple", 3}, {"banana", 5}};
+    mp.clear();                   // 清空整個 map
+    cout << mp.size() << endl;    // 輸出: 0
+}
+
+cout<<("======================\n");// 分隔線
+
+{
+    // 《5. 遍歷》
+    //  Tip: map內的元素是pair
+
+    map<string, int> mp = {{"banana", 5}, {"apple", 3}, {"cherry", 7}};
+
+    // 方法一：使用 迭代器iterator
+    for (auto it = mp.begin(); it != mp.end(); ++it) {
+        cout << it->first << ": " << it->second << endl;
+    }cout<<endl;
+
+    // 方法二：使用 range-based for statement
+    for (const auto& p : mp) {
+        cout << p.first << ": " << p.second << endl;
+    }cout<<endl;
+
+    // 方法三：C++17 結構化綁定
+    for (const auto& [key, value] : mp) {
+        cout << key << ": " << value << endl;
+    }
+
+    /*
+    三個方法的輸出皆相同
+    輸出（自動依 key 排序）:
+    apple: 3
+    banana: 5
+    cherry: 7
+    */
+}
+
+cout<<("======================\n");// 分隔線
+
+{
+    // 《6. 常用函式》
+    
+}
 }
 
 

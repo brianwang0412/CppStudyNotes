@@ -1,77 +1,77 @@
-#include<vector>  //»İ¤Ş¤Jvector¼ĞÀYÀÉ
+#include<vector>  //éœ€å¼•å…¥vectoræ¨™é ­æª”
 
 #include<iostream>
 #include<algorithm>
 #include<numeric>
-#include <stdexcept>  // std::out_of_range ©w¸q¦b <stdexcept> ¼ĞÀYÀÉ¤¤
+#include <stdexcept>  // std::out_of_range å®šç¾©åœ¨ <stdexcept> æ¨™é ­æª”ä¸­
 using namespace std;
 
-// §Ú¨Ï¥ÎTraversal_v¨Óªí¥Ü¹M¾úvector vªº¿é¥Xµ²ªG
+// æˆ‘ä½¿ç”¨Traversal_vä¾†è¡¨ç¤ºéæ­·vector vçš„è¼¸å‡ºçµæœ
 #define Traversal_v for (const int& i:v) cout<<i<<' '; cout<<endl;
-// §Ú¨Ï¥ÎTraversal_vv¨Óªí¥Ü¹M¾úvector vv(§Y¤Gºûvector°}¦C)ªº¿é¥Xµ²ªG
+// æˆ‘ä½¿ç”¨Traversal_vvä¾†è¡¨ç¤ºéæ­·vector vv(å³äºŒç¶­vectoré™£åˆ—)çš„è¼¸å‡ºçµæœ
 #define Traversal_vv for (const auto i:vv){for (const int j:i)cout<<j<<' ';cout<<endl;}
 
 /*
-«e¨¥: vectorªº¯S¦â¡B¥Î³~
+å‰è¨€: vectorçš„ç‰¹è‰²ã€ç”¨é€”
 
-¬Û¸û©ó¥²¶·¦b«Å§i®É´N¡u½T©w°}¦C¤j¤p¡vªº¶Ç²Î°}¦C(¦p int Array[5];)
-vector¬O¤@­Ó°ÊºA°}¦C¡A¥i¥H¦b°õ¦æ´Á¡u¦Û°Ê½Õ¾ã¤j¤p¡v¡A¤ñ¶Ç²Î°}¦C§ó¦w¥ş¡B§ó¤è«K
+ç›¸è¼ƒæ–¼å¿…é ˆåœ¨å®£å‘Šæ™‚å°±ã€Œç¢ºå®šé™£åˆ—å¤§å°ã€çš„å‚³çµ±é™£åˆ—(å¦‚ int Array[5];)
+vectoræ˜¯ä¸€å€‹å‹•æ…‹é™£åˆ—ï¼Œå¯ä»¥åœ¨åŸ·è¡ŒæœŸã€Œè‡ªå‹•èª¿æ•´å¤§å°ã€ï¼Œæ¯”å‚³çµ±é™£åˆ—æ›´å®‰å…¨ã€æ›´æ–¹ä¾¿
 */
 
 
 int main(){
 {
-    // ¡m1. vectorªº«Å§i¡n
+    // ã€Š1. vectorçš„å®£å‘Šã€‹
     
-    // «Ø¥ßªÅªºvector¡A¥i¥H¥Î©óÀx¦s¾ã¼Æ(int)¡A¦WºÙ¬°v1
+    // å»ºç«‹ç©ºçš„vectorï¼Œå¯ä»¥ç”¨æ–¼å„²å­˜æ•´æ•¸(int)ï¼Œåç¨±ç‚ºv1
     vector<int> v1;
     
-    // «Ø¥ß¥i®e¯Ç¤­­Ó¾ã¼Æªº vector¡A ¨C­Ó¤¸¯À­È¹w³]¬O 0
+    // å»ºç«‹å¯å®¹ç´äº”å€‹æ•´æ•¸çš„ vectorï¼Œ æ¯å€‹å…ƒç´ å€¼é è¨­æ˜¯ 0
     vector<int> v2(5);  // {0, 0, 0, 0, 0}
 
-    // «Ø¥ß¥i®e¯Ç¤­­Ó¾ã¼Æªº vector¡A ¨C­Ó¤¸¯À­È¹w³]¬O 10
+    // å»ºç«‹å¯å®¹ç´äº”å€‹æ•´æ•¸çš„ vectorï¼Œ æ¯å€‹å…ƒç´ å€¼é è¨­æ˜¯ 10
     vector<int> v3(5, 10);  // {10, 10, 10, 10, 10}
 
-    // ªì©l¤Æ¥]§t¤¸¯Àªº vector¡A¦Û°Ê³]©w°}¦Cªø«×
-    vector<int> v4 = {1, 2, 3, 4};  //v4ªºªø«×¬° 4
+    // åˆå§‹åŒ–åŒ…å«å…ƒç´ çš„ vectorï¼Œè‡ªå‹•è¨­å®šé™£åˆ—é•·åº¦
+    vector<int> v4 = {1, 2, 3, 4};  //v4çš„é•·åº¦ç‚º 4
     
-    // ½Æ»s«Øºc¡Av4»Pv5·|¤¬¬Û¿W¥ß
-    vector<int> v5(v4);  //v5¬°{1, 2, 3, 4}
+    // è¤‡è£½å»ºæ§‹ï¼Œv4èˆ‡v5æœƒäº’ç›¸ç¨ç«‹
+    vector<int> v5(v4);  //v5ç‚º{1, 2, 3, 4}
 
-    // «Ø¥ß 3x2 ªº¤Gºûvector¡A¨C­Ó¤º¼hvectorªì©l¤Æ¬° {1, 2}
+    // å»ºç«‹ 3x2 çš„äºŒç¶­vectorï¼Œæ¯å€‹å…§å±¤vectoråˆå§‹åŒ–ç‚º {1, 2}
     vector<vector<int>> v6(3, vector<int>{1,2});  // {{1,2}, {1,2}, {1,2}}
-    // ³o¸Ìªºvector<int>{1,2}¡A¥Nªí¤@­ÓÁ{®É³Ğ«Øªº¤@ºûvector¡A¨Ã¥B¥]§t 1,2 ¨â­Ó¤¸¯À
-    /* ¦P²z¡A¤]¥i¥H§ï¬°vector<int>(3,0)¡A¥Nªí¤@­ÓÁ{®É³Ğ«Øªº¤@ºûvector¡A¥]§t3­Ó¤¸¯À¥Bªì©l­È¬Ò¬°0
-       ¨º»òv6´N·|ÅÜ¦¨ {{0,0,0}, {0,0,0}, {0,0,0}} */
+    // é€™è£¡çš„vector<int>{1,2}ï¼Œä»£è¡¨ä¸€å€‹è‡¨æ™‚å‰µå»ºçš„ä¸€ç¶­vectorï¼Œä¸¦ä¸”åŒ…å« 1,2 å…©å€‹å…ƒç´ 
+    /* åŒç†ï¼Œä¹Ÿå¯ä»¥æ”¹ç‚ºvector<int>(3,0)ï¼Œä»£è¡¨ä¸€å€‹è‡¨æ™‚å‰µå»ºçš„ä¸€ç¶­vectorï¼ŒåŒ…å«3å€‹å…ƒç´ ä¸”åˆå§‹å€¼çš†ç‚º0
+       é‚£éº¼v6å°±æœƒè®Šæˆ {{0,0,0}, {0,0,0}, {0,0,0}} */
 
 
-    // ¤]¥i¥Hª½±µªì©l¤Æ¤Gºûvector
+    // ä¹Ÿå¯ä»¥ç›´æ¥åˆå§‹åŒ–äºŒç¶­vector
     vector<vector<int>> v7 = {{1,2}, {3,4,5}, {6,7,8,9}};
 }
-//===============================¤À¹j½u===============================
+//===============================åˆ†éš”ç·š===============================
 {
-    // ¡m2. vectorªº·s¼W¡B¦s¨ú»P§R°£¡n
+    // ã€Š2. vectorçš„æ–°å¢ã€å­˜å–èˆ‡åˆªé™¤ã€‹
 
-    vector<int> v;  // «Ø¥ß¤@­ÓªÅªºvector
+    vector<int> v;  // å»ºç«‹ä¸€å€‹ç©ºçš„vector
 
-    // 1. ·s¼W (push_back»Pinsert)
+    // 1. æ–°å¢ (push_backèˆ‡insert)
 
-    // v.push_back(x) ¦bvectorªº§Àºİ·s¼W¤¸¯À
+    // v.push_back(x) åœ¨vectorçš„å°¾ç«¯æ–°å¢å…ƒç´ 
     v.push_back(1);
     v.push_back(2);
     v.push_back(3);
-    Traversal_v // ¹M¾ú¿é¥X: 1 2 3
+    Traversal_v // éæ­·è¼¸å‡º: 1 2 3
     
 
-    // v.insert(pos, x) ¦bvectorªº«ü©w¦ì¸m´¡¤J¤¸¯À
-    v.insert(v.begin(), 123);  //¦b¶}ÀY´¡¤J¤¸¯À
-    Traversal_v // ¿é¥X: 123 1 2 3 
+    // v.insert(pos, x) åœ¨vectorçš„æŒ‡å®šä½ç½®æ’å…¥å…ƒç´ 
+    v.insert(v.begin(), 123);  //åœ¨é–‹é ­æ’å…¥å…ƒç´ 
+    Traversal_v // è¼¸å‡º: 123 1 2 3 
     
-    v.insert(v.begin()+1, 456);  //¦b¶}ÀYªº¤U¤@­Ó¦ì¸m´¡¤J¤¸¯À
-    Traversal_v // ¿é¥X: 123 456 1 2 3 
+    v.insert(v.begin()+1, 456);  //åœ¨é–‹é ­çš„ä¸‹ä¸€å€‹ä½ç½®æ’å…¥å…ƒç´ 
+    Traversal_v // è¼¸å‡º: 123 456 1 2 3 
 
 
-    {// ¤Gºû°}¦C¤¤·s¼W¤¸¯À
+    {// äºŒç¶­é™£åˆ—ä¸­æ–°å¢å…ƒç´ 
     vector<vector<int>> vv;
     vv.push_back(vector<int>{1,2,3});
     vv.push_back(vector<int>{4,5,6});
@@ -80,201 +80,201 @@ int main(){
         cout<<endl;
     }
     /*
-    ¿é¥X:
+    è¼¸å‡º:
     1 2 3 
     4 5 6 
     */}
     
 
-    cout<<("======================\n");// ¤À¹j½u
+    cout<<("======================\n");// åˆ†éš”ç·š
 
 
-    // 2. ¦s¨ú ([i] .at(i) .front() .back())
+    // 2. å­˜å– ([i] .at(i) .front() .back())
 
-    // ¨Ï¥Î v[i] ¨Ó¦s¨ú
-    v[0] = 999;  //±Nindex=0¦ì¸mªº¤¸¯À§ï¬°999
-    cout<< v[0] <<endl;  // ¿é¥X: 999
+    // ä½¿ç”¨ v[i] ä¾†å­˜å–
+    v[0] = 999;  //å°‡index=0ä½ç½®çš„å…ƒç´ æ”¹ç‚º999
+    cout<< v[0] <<endl;  // è¼¸å‡º: 999
 
 
-    // ¨Ï¥Î v.at(i) ¨Ó¦s¨ú
-    // .at(i) ·|¥ı°µÃä¬ÉÀË¬d
+    // ä½¿ç”¨ v.at(i) ä¾†å­˜å–
+    // .at(i) æœƒå…ˆåšé‚Šç•Œæª¢æŸ¥
     v.at(1) = 111;
-    cout<< v.at(1) <<endl;  // ¿é¥X: 111
+    cout<< v.at(1) <<endl;  // è¼¸å‡º: 111
 
-    // Ãä¬ÉÀË¬d½d¨Ò
+    // é‚Šç•Œæª¢æŸ¥ç¯„ä¾‹
     try {
-        cout << v.at(99) << endl;  // ¶W¥X½d³ò
+        cout << v.at(99) << endl;  // è¶…å‡ºç¯„åœ
     } catch (const std::out_of_range &e) {
-        cout << "¿ù»~¡G" << e.what() << endl;
-        // ¿é¥X: ¿ù»~¡Gvector::_M_range_check: __n (which is 99) >= this->size() (which is 5)
+        cout << "éŒ¯èª¤ï¼š" << e.what() << endl;
+        // è¼¸å‡º: éŒ¯èª¤ï¼švector::_M_range_check: __n (which is 99) >= this->size() (which is 5)
     }
 
 
-    // ¨Ï¥Î v.front()»Pv.back() ¨Ó¦s¨ú
-    v.front() = 2026; //¨ú²Ä¤@­Ó¤¸¯À¡Aµ¥¦P©ó¦s¨úv[0]
-    cout<< v.front() <<endl;  // ¿é¥X: 2026
+    // ä½¿ç”¨ v.front()èˆ‡v.back() ä¾†å­˜å–
+    v.front() = 2026; //å–ç¬¬ä¸€å€‹å…ƒç´ ï¼Œç­‰åŒæ–¼å­˜å–v[0]
+    cout<< v.front() <<endl;  // è¼¸å‡º: 2026
 
-    v.back() = 1234;  //¨ú³Ì«á¤@­Ó¤¸¯À
-    cout<< v.back() <<endl;  // ¿é¥X: 1234
+    v.back() = 1234;  //å–æœ€å¾Œä¸€å€‹å…ƒç´ 
+    cout<< v.back() <<endl;  // è¼¸å‡º: 1234
 
-    Traversal_v // ¹M¾ú¿é¥X: 2026 111 1 2 1234 
+    Traversal_v // éæ­·è¼¸å‡º: 2026 111 1 2 1234 
 
-    cout<<("======================\n");// ¤À¹j½u
+    cout<<("======================\n");// åˆ†éš”ç·š
 
-    // 3. §R°£
+    // 3. åˆªé™¤
 
-    // ²{¦bvector v¤¤¦³5­Ó¤¸¯À {2026, 111, 1, 2, 1234}
+    // ç¾åœ¨vector vä¸­æœ‰5å€‹å…ƒç´  {2026, 111, 1, 2, 1234}
 
-    // ¥Î v.erase(pos) §R°£«ü©w¦ì¸mªº¤¸¯À
-    v.erase(v.begin()+1);  // §R°£²Ä¤G­Ó¤¸¯À(111)
-    Traversal_v // ¿é¥X: 2026 1 2 1234
+    // ç”¨ v.erase(pos) åˆªé™¤æŒ‡å®šä½ç½®çš„å…ƒç´ 
+    v.erase(v.begin()+1);  // åˆªé™¤ç¬¬äºŒå€‹å…ƒç´ (111)
+    Traversal_v // è¼¸å‡º: 2026 1 2 1234
 
-    v.erase(v.begin(), v.begin()+2); // §R°£²Ä¤@¨ì²Ä¤T­Ó¤¸¯À(¤£§t²Ä¤T­Ó)
-    Traversal_v // ¿é¥X: 2 1234
+    v.erase(v.begin(), v.begin()+2); // åˆªé™¤ç¬¬ä¸€åˆ°ç¬¬ä¸‰å€‹å…ƒç´ (ä¸å«ç¬¬ä¸‰å€‹)
+    Traversal_v // è¼¸å‡º: 2 1234
 
-    // ¥Î v.pop_back() §R°£³Ì«á¤@­Ó¤¸¯À
+    // ç”¨ v.pop_back() åˆªé™¤æœ€å¾Œä¸€å€‹å…ƒç´ 
     v.pop_back();
-    Traversal_v // ¿é¥X: 2
+    Traversal_v // è¼¸å‡º: 2
 
-    // ¥Î v.clear() ²MªÅ vector
+    // ç”¨ v.clear() æ¸…ç©º vector
     v.clear();
-    Traversal_v // ¿é¥X:     (¨S¦³¤¸¯À¡A²MªÅ¤F)
+    Traversal_v // è¼¸å‡º:     (æ²’æœ‰å…ƒç´ ï¼Œæ¸…ç©ºäº†)
 
 
-    {// ¤Gºûvectorªº§R°£
+    {// äºŒç¶­vectorçš„åˆªé™¤
     vector<vector<int>> vv = {{1,2}, {3,4}, {5,6}};
 
-    vv.erase(vv.begin()); //§R°£²Ä¤@¦C {1,2}
+    vv.erase(vv.begin()); //åˆªé™¤ç¬¬ä¸€åˆ— {1,2}
     Traversal_vv 
     /*
-    ¿é¥X:
+    è¼¸å‡º:
     3 4 
     5 6 
     */
 
-    vv[0].erase(vv[0].begin()); //§R°£²Ä¤@¦Cªº²Ä¤@­Ó¤¸¯À 3
+    vv[0].erase(vv[0].begin()); //åˆªé™¤ç¬¬ä¸€åˆ—çš„ç¬¬ä¸€å€‹å…ƒç´  3
     Traversal_vv
     /*
-    ¿é¥X:
+    è¼¸å‡º:
     4
     5 6
     */
 
     vv.clear();
-    Traversal_vv // ¿é¥X:     (¨S¦³¤¸¯À¡A²MªÅ¤F)
+    Traversal_vv // è¼¸å‡º:     (æ²’æœ‰å…ƒç´ ï¼Œæ¸…ç©ºäº†)
 
     }
 }
-cout<<("====================================\n");// ¤À¹j½u
+cout<<("====================================\n");// åˆ†éš”ç·š
 {
-    // ¡m3. ¹M¾ú¡n
+    // ã€Š3. éæ­·ã€‹
 
     vector<int> v = {1,2,3,4,5};
 
-    // 1. °ò¥»for°j°é
+    // 1. åŸºæœ¬forè¿´åœˆ
     for (int i=0; i<v.size(); i++){
         cout<< v[i] << ' ';
     }
     cout<<endl;
-    // ¿é¥X: 1 2 3 4 5
+    // è¼¸å‡º: 1 2 3 4 5
 
 
-    // 2. ¨Ï¥Î¡u¥H½d³ò¬°°òÂ¦ªº for »y¥y¡v¡]Range-based for Statement¡^
-    //    ¥ç¥iºÙ¬°¡ufor-each loop¡v
+    // 2. ä½¿ç”¨ã€Œä»¥ç¯„åœç‚ºåŸºç¤çš„ for èªå¥ã€ï¼ˆRange-based for Statementï¼‰
+    //    äº¦å¯ç¨±ç‚ºã€Œfor-each loopã€
     for (int element : v){
         cout<< element << ' ';
     }
     cout<<endl;
-    // ¿é¥X: 1 2 3 4 5
+    // è¼¸å‡º: 1 2 3 4 5
     /*
-    »y¥y¸ÑÄÀ:
-    ¦b³o­Ófor°j°é¤¤¡A§Ú«Å§i¤@­Ó¾ã¼ÆÅÜ¼Æelement¡A¥Î¨ÓÀx¦s¥Ø«e¹M¾ú¨ìªº¤¸¯À
-    ¨Ã¦b¨C¤@½ü°j°é¤¤¿é¥X¥Ø«eÅª¨ú¨ìªº¤¸¯À­È
+    èªå¥è§£é‡‹:
+    åœ¨é€™å€‹forè¿´åœˆä¸­ï¼Œæˆ‘å®£å‘Šä¸€å€‹æ•´æ•¸è®Šæ•¸elementï¼Œç”¨ä¾†å„²å­˜ç›®å‰éæ­·åˆ°çš„å…ƒç´ 
+    ä¸¦åœ¨æ¯ä¸€è¼ªè¿´åœˆä¸­è¼¸å‡ºç›®å‰è®€å–åˆ°çš„å…ƒç´ å€¼
 
-    ¦pªG§A¾Ç¹LPython¡A§A¤]¥i¥H§â for(int element : v) ¬İ¦¨ for element in v
+    å¦‚æœä½ å­¸éPythonï¼Œä½ ä¹Ÿå¯ä»¥æŠŠ for(int element : v) çœ‹æˆ for element in v
     
-    ³v¨B¸ÑªR:
-    ¦b²Ä¤@½ü°j°é¤¤¡A§Ú±qvector v¤¤ªº²Ä¤@­Ó¤¸¯À¶}©lÅª¨ú¡A¨Ã±Nv[0]ªº­È½Æ»sµ¹element
-    ±µµÛ¿é¥Xelementªº­È(§Yv[0]ªº­È)
+    é€æ­¥è§£æ:
+    åœ¨ç¬¬ä¸€è¼ªè¿´åœˆä¸­ï¼Œæˆ‘å¾vector vä¸­çš„ç¬¬ä¸€å€‹å…ƒç´ é–‹å§‹è®€å–ï¼Œä¸¦å°‡v[0]çš„å€¼è¤‡è£½çµ¦element
+    æ¥è‘—è¼¸å‡ºelementçš„å€¼(å³v[0]çš„å€¼)
 
-    ¦b²Ä¤G½ü°j°é¤¤¡A§Ú±µµÛÅª¨úv[1]ªº­È¡A¨Ã±N¨ä½Æ»sµ¹element
+    åœ¨ç¬¬äºŒè¼ªè¿´åœˆä¸­ï¼Œæˆ‘æ¥è‘—è®€å–v[1]çš„å€¼ï¼Œä¸¦å°‡å…¶è¤‡è£½çµ¦element
     ...
-    ª½¨ìÅª¨ú§¹vector v ¤¤ªº³Ì«á¤@­Ó¤¸¯À¡A°j°éµ²§ô
+    ç›´åˆ°è®€å–å®Œvector v ä¸­çš„æœ€å¾Œä¸€å€‹å…ƒç´ ï¼Œè¿´åœˆçµæŸ
     */
 
 
-    // 3. ¦bfor-each loopªº°òÂ¦¤§¤W¡A­Y·Q§ó¶i¤@¨B­×§ï¤¸¯À­È¡A¥i¥H§ï¬°¥Îelement§@¬°vector v ¤¤ªº¤¸¯Àªº°Ñ¦Ò(reference)
+    // 3. åœ¨for-each loopçš„åŸºç¤ä¹‹ä¸Šï¼Œè‹¥æƒ³æ›´é€²ä¸€æ­¥ä¿®æ”¹å…ƒç´ å€¼ï¼Œå¯ä»¥æ”¹ç‚ºç”¨elementä½œç‚ºvector v ä¸­çš„å…ƒç´ çš„åƒè€ƒ(reference)
     for (int& element : v){
         element += 1;
     }
-    Traversal_v  // ¿é¥X: 2 3 4 5 6
+    Traversal_v  // è¼¸å‡º: 2 3 4 5 6
     /*
-    »y¥y¸ÑÄÀ:
-    ¦b³o­Ó°j°é¤¤¡A§Ú«Å§i¤@­Ó¾ã¼Æªº¡u°Ñ¦ÒÅÜ¼Æ¡velement¡A¥Î¨ÓÀx¦s¥Ø«e¹M¾ú¨ìªº¤¸¯Àªº°Ñ¦Ò
-    ¨Ã¦b¨C¤@½üªº°j°é¤¤§Q¥Îelement¶¡±µ­×§ïvector v ¤¤¹ïÀ³¤¸¯Àªº­È
+    èªå¥è§£é‡‹:
+    åœ¨é€™å€‹è¿´åœˆä¸­ï¼Œæˆ‘å®£å‘Šä¸€å€‹æ•´æ•¸çš„ã€Œåƒè€ƒè®Šæ•¸ã€elementï¼Œç”¨ä¾†å„²å­˜ç›®å‰éæ­·åˆ°çš„å…ƒç´ çš„åƒè€ƒ
+    ä¸¦åœ¨æ¯ä¸€è¼ªçš„è¿´åœˆä¸­åˆ©ç”¨elementé–“æ¥ä¿®æ”¹vector v ä¸­å°æ‡‰å…ƒç´ çš„å€¼
     */
 }
-cout<<("====================================\n");// ¤À¹j½u
+cout<<("====================================\n");// åˆ†éš”ç·š
 {
-    //¡m4. ±`¥Î¥\¯à¡n
+    //ã€Š4. å¸¸ç”¨åŠŸèƒ½ã€‹
     
     vector<int> v = {1,2,3,4};
 
-    // ¨ú±o°}¦Cªø«×(¤¸¯À­Ó¼Æ)
+    // å–å¾—é™£åˆ—é•·åº¦(å…ƒç´ å€‹æ•¸)
     int n = v.size();
-    cout<< n <<endl;  // ¿é¥X: 4
+    cout<< n <<endl;  // è¼¸å‡º: 4
 
-    // ¨ú±o°}¦C®e¶q(¥Ø«e°t¸mªº°O¾ĞÅé¤j¤p)
+    // å–å¾—é™£åˆ—å®¹é‡(ç›®å‰é…ç½®çš„è¨˜æ†¶é«”å¤§å°)
     vector<int> Nums;
     for (int i=0; i<10; i++){
         cout<< Nums.capacity() << ' ';
         Nums.push_back(1);
     }cout<<endl;
-    // ¿é¥X:         0 1 2 4 4 8 8 8 8 16 
-    // ¹ïÀ³¤¸¯À­Ó¼Æ:  0 1 2 3 4 5 6 7 8 9
-    // ¦¹¿é¥Xµ²ªG¶È¾A¥Î©ó GCC/libstdc++¡A¤£¦P½sÄ¶¾¹¡]¦p MSVC¡^ªº¦¨ªøµ¦²¤¤£¦P¡Aµ²ªG¥i¯à¤£¦P
+    // è¼¸å‡º:         0 1 2 4 4 8 8 8 8 16 
+    // å°æ‡‰å…ƒç´ å€‹æ•¸:  0 1 2 3 4 5 6 7 8 9
+    // æ­¤è¼¸å‡ºçµæœåƒ…é©ç”¨æ–¼ GCC/libstdc++ï¼Œä¸åŒç·¨è­¯å™¨ï¼ˆå¦‚ MSVCï¼‰çš„æˆé•·ç­–ç•¥ä¸åŒï¼Œçµæœå¯èƒ½ä¸åŒ
 
-    // §PÂ_°}¦C¬O§_¬°ªÅ
-    cout<< v.empty() <<endl;  // ¿é¥X: 0 (ªí¥Ü«DªÅ)
+    // åˆ¤æ–·é™£åˆ—æ˜¯å¦ç‚ºç©º
+    cout<< v.empty() <<endl;  // è¼¸å‡º: 0 (è¡¨ç¤ºéç©º)
 
-    // ¥æ´«¨â­Ó°}¦Cªº¤º®e
+    // äº¤æ›å…©å€‹é™£åˆ—çš„å…§å®¹
     vector<int> v1={1,2,3}, v2={7,8,9};
     v1.swap(v2);
     cout<<"v1: ";
-    for (const int& i:v1) cout<<i<<' ';cout<<endl;  //¿é¥X: v1: 7 8 9
+    for (const int& i:v1) cout<<i<<' ';cout<<endl;  //è¼¸å‡º: v1: 7 8 9
 
     cout<<"v2: ";
-    for (const int& i:v2) cout<<i<<' ';cout<<endl;  //¿é¥X: v2: 1 2 3
+    for (const int& i:v2) cout<<i<<' ';cout<<endl;  //è¼¸å‡º: v2: 1 2 3
 
     
 
 
 
-    // ·f°t <algorithm> ¨Ï¥Î
+    // æ­é… <algorithm> ä½¿ç”¨
 
-    // ¥æ´«³æ­Ó°}¦C¤¤ªº¨â­Ó¤¸¯Àªº¦ì¸m
+    // äº¤æ›å–®å€‹é™£åˆ—ä¸­çš„å…©å€‹å…ƒç´ çš„ä½ç½®
     v = {1,2,3,4,5};
     swap(v[0],v[4]);
-    Traversal_v  //¿é¥X: 5 2 3 4 1
+    Traversal_v  //è¼¸å‡º: 5 2 3 4 1
 
-    // ±Æ§Ç
+    // æ’åº
     v = {5,4,3,2,1};
-    sort(v.begin(), v.end());  // ¥Ñ¤p¨ì¤j±Æ§Ç
-    Traversal_v  //¿é¥X: 1 2 3 4 5
+    sort(v.begin(), v.end());  // ç”±å°åˆ°å¤§æ’åº
+    Traversal_v  //è¼¸å‡º: 1 2 3 4 5
 
-    sort(v.begin(), v.end(), greater<int>());  //¥Ñ¤j¨ì¤p±Æ§Ç
-    // ¤]¥i¥H§ï¥ÎLambdaªí¹F¦¡: [](int a, int b) { return a > b; }
-    Traversal_v  //¿é¥X: 5 4 3 2 1
+    sort(v.begin(), v.end(), greater<int>());  //ç”±å¤§åˆ°å°æ’åº
+    // ä¹Ÿå¯ä»¥æ”¹ç”¨Lambdaè¡¨é”å¼: [](int a, int b) { return a > b; }
+    Traversal_v  //è¼¸å‡º: 5 4 3 2 1
 
-    // ¤ÏÂà
+    // åè½‰
     v = {1,3,5,7,9};
     reverse(v.begin(), v.end());
-    Traversal_v  //¿é¥X: 9 7 5 3 1
+    Traversal_v  //è¼¸å‡º: 9 7 5 3 1
 
-    // ´M§ä¤¸¯Àªº¦ì¸m
+    // å°‹æ‰¾å…ƒç´ çš„ä½ç½®
     v = {1,3,5,7,9};
-    auto it = find(v.begin(), v.end(), 5);  // it ¬°«ü¦V¸Ó¤¸¯Àªº­¡¥N¾¹(iterator)
-    //­Y¨S§ä¨ì·|¦^¶Ç v.end()
+    auto it = find(v.begin(), v.end(), 5);  // it ç‚ºæŒ‡å‘è©²å…ƒç´ çš„è¿­ä»£å™¨(iterator)
+    //è‹¥æ²’æ‰¾åˆ°æœƒå›å‚³ v.end()
     if (it != v.end()){
         cout<<"Found "<< *it <<endl;
         cout<<"It's at index "<< distance(v.begin(), it) <<endl;
@@ -283,32 +283,32 @@ cout<<("====================================\n");// ¤À¹j½u
         cout<<"Not found"<<endl;
     }
     /*
-    ¿é¥X:
+    è¼¸å‡º:
     Found 5
     It's at index 2
     */
 
-    // ­pºâ¬Y­Èªº¥X²{¦¸¼Æ
+    // è¨ˆç®—æŸå€¼çš„å‡ºç¾æ¬¡æ•¸
     v = {1,1,1,2};
     int cnt = count(v.begin(), v.end(), 1);
-    cout<< cnt <<endl;  //¿é¥X: 3
+    cout<< cnt <<endl;  //è¼¸å‡º: 3
 
 
-    // ·f°t <numeric> ¨Ï¥Î
+    // æ­é… <numeric> ä½¿ç”¨
 
     v = {10,20,30};
 
-    // ¥[Á`
-    int sum = accumulate(v.begin(), v.end(), 0); // ³Ì«áªº0¥Nªíªì©l­È¬°0
-    cout<< sum <<endl;  //¿é¥X: 60
+    // åŠ ç¸½
+    int sum = accumulate(v.begin(), v.end(), 0); // æœ€å¾Œçš„0ä»£è¡¨åˆå§‹å€¼ç‚º0
+    cout<< sum <<endl;  //è¼¸å‡º: 60
 
-    // ³s­¼
+    // é€£ä¹˜
     int product = accumulate(v.begin(), v.end(), 1, [](int a, int b){return a*b;});
-    cout<< product <<endl;  //¿é¥X: 6000
+    cout<< product <<endl;  //è¼¸å‡º: 6000
 }
 }
 
 
-// ¥»½gµ§°O°Ñ¦ÒClaude (https://claude.ai/share/9d11481c-8a88-4443-94ab-67d5b45b3226)
-// ¥»½gµ§°O°Ñ¦ÒLuke Tseng ¡iC++ µ§°O¡jvector - part 16 (https://hackmd.io/@LukeTseng/H1ZqX9RHkl)
+// æœ¬ç¯‡ç­†è¨˜åƒè€ƒClaude (https://claude.ai/share/9d11481c-8a88-4443-94ab-67d5b45b3226)
+// æœ¬ç¯‡ç­†è¨˜åƒè€ƒLuke Tseng ã€C++ ç­†è¨˜ã€‘vector - part 16 (https://hackmd.io/@LukeTseng/H1ZqX9RHkl)
 // Created by B.J.Wang 2026/7/28
