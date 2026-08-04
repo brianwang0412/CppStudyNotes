@@ -65,6 +65,8 @@ cout<<("======================\n");// 分隔線
         cout<< "error: " << e.what() <<endl;
     }
     // 輸出: error: map::at
+    // 注意: 此訊息內容為 libstdc++(GCC) 的實作細節，並非C++標準規範，
+    //       換到 MSVC 等其他編譯器可能會顯示不同文字
 
     // 使用 mp.find(Key) 來找到指定元素
     // 回傳指向該元素的 迭代器(iterator)，找不到則回傳 mp.end()
@@ -110,7 +112,9 @@ cout<<("======================\n");// 分隔線
     
 
     // 使用 mp.emplace(Key, Value) 來新增
-    // 與insert同樣不會覆蓋已有元素，並效率較insert高
+    // 與insert同樣不會覆蓋已有元素
+    // 理論上效率較insert高（省去臨時pair的複製/搬移），但差異在value為簡單型別時通常不明顯
+    // 在value為複雜物件時效益較顯著
     mp.emplace("grape", 8);
     mp.emplace("grape", 99); // key 已存在，不會覆蓋
 
@@ -126,20 +130,26 @@ cout<<("======================\n");// 分隔線
 
     // 用 mp.erase(Key或iterator) 刪除指定元素
 
-    // 依 key 刪除
-    mp.erase("apple");           
+    // 依 key 刪除 (回傳刪除的數量)
+    int Erase_num = mp.erase("apple");
+    cout<< Erase_num <<endl;  // 輸出: 1 (表示成功刪除1個Key為"apple"的元素)
     // 剩下: banana=5, cherry=7, date=9
 
-    // 依 iterator 刪除
+    // 依 iterator 刪除 (回傳刪除元素的後一個元素的迭代器)
     auto it = mp.find("banana");
-    mp.erase(it);                 
+    auto next = mp.erase(it);
+    cout<< next->first <<':'<< next->second <<endl;
+    // 輸出: cherry:7 (表示成功刪除，且下一個元素為{"cherry", 7})
     // 剩下: cherry=7, date=9
 
     // 範圍刪除（此例為全部刪除）
-    mp.erase(mp.begin(), mp.end());     
+    /*
+    參數：first 與 last 兩個迭代器，刪除區間 [first, last)
+    回傳型態：iterator（指向最後被刪除元素之後的元素，即原先 last 指向的位置)
+    */
+    it = mp.erase(mp.begin(), mp.end());
+    cout<< (it==mp.end()) <<endl;  // 輸出: 1 (表示it是mp.end())
     // 剩下: 空的
-
-    cout << mp.size() << endl;    // 輸出: 0
 
 
     // 用 mp.clear() 清空整個map
@@ -186,11 +196,64 @@ cout<<("======================\n");// 分隔線
 {
     // 《6. 常用函式》
     
+    map<int ,string> mp = {{1, "one"}, {3, "three"}, {2, "two"}};
+    map<int, string> mp2;
+
+    // 1. 判斷 map 是否為空
+    bool IsEmpty = mp.empty();
+    cout<< IsEmpty <<endl;  // 輸出: 0 (表示非空)
+
+    IsEmpty = mp2.empty();
+    cout<< IsEmpty <<endl;  // 輸出: 1 (表示此map是空的)
+
+
+    // 2. 取得 map 的大小(元素個數)
+    int N = mp.size();
+    cout<< N <<endl;  // 輸出: 3  (mp內含三個元素)
+
+    N = mp2.size();
+    cout<< N <<endl;  // 輸出: 0
+
+
+    // 3. 邊界查詢 (lower_bound / upper_bound / equal_range)
+    
+    mp = {{1, "one"}, {3, "three"}, {5, "five"}, {7, "seven"}, {9, "nine"}};
+
+    // mp.lower_bound(k) : 回傳第一個 Key值>= k 的元素，回傳指向該元素的iterator，若超出範圍則回傳mp.end()
+    // 重點: 大於或等於(>=)
+    auto lb = mp.lower_bound(4); 
+    cout << (*lb).first << ':' << lb->second <<endl;   // 輸出: 5:five
+    // ptr-> 等同於 (*ptr).
+    
+    // mp.upper_bound(k) : 回傳第一個 Key值> k 的元素，回傳指向該元素的iterator，若超出範圍則回傳mp.end()
+    // 重點: 大於(>)
+    auto ub = mp.upper_bound(5); // 第一個Key值 > 5 的元素
+    cout << ub->first << ':' << (*ub).second << endl;   // 輸出: 7:seven
+
+    // mp.equal_range(k) : 回傳 pair {lower_bound(k), upper_bound(k)}
+    auto eq = mp.equal_range(3);  // {lower_bound(3), upper_bound(3)
+    cout << eq.first->first << " " << eq.second->first << endl;  // 輸出: 3 5
 }
 }
 
+/*
+補充: 怎麼判斷什麼時候要用 dot(.) 跟 arrow(->)
 
+以map為例
+當我們使用range-based for statement時
+此時 for (const auto& p:mp) 這裡的 p 存取 mp 中每一個元素，這些元素的型別為pair
+因此此時 p 為 pair，我們可以直接用 dot(.) 來存取公開成員 first 與 second
+例如 cout<< p.first << ':' << p.second <<endl;
+
+而當我們使用 迭代器(iterator) 時
+此時 auto it = mp.find("banana"); 我們可以將 it 視為指向 {"baanana", 3} 的pointer(指標) (假設該元素存在)
+若想使用 it 需將其解參考(*) 後配合dot(*) 使用
+即 cout<< (*it).first << ':' << (*it).second <<endl;
+可以用 arrow(->) 來簡化程式碼
+即寫為 cout<< it->first << ':' << it->second << endl;
+*/
 
 
 // 本篇筆記參考 ShengYu Talk - C++ std::map 用法與範例(https://shengyu7697.github.io/std-map/)
-// 本篇筆記參考 Claude
+// 本篇筆記參考 Claude (https://claude.ai/share/d681640f-0e5f-47e2-8a02-4fab8fb724c4)
+// Created by B.J.Wang 2026/8/4
