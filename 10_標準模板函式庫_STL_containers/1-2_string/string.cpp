@@ -396,6 +396,76 @@ cout<<("====================================\n");// 分隔線
     int cnt = count(s.begin(), s.end(), 'a');
     cout<< cnt <<endl;  // 輸出: 3
 }
+//===============================分隔線===============================
+{
+    // 《補充: getline() 的用法》
+    // getline() 定義在 <string> (讀取cin/一般字串) 或 <sstream> (讀取stringstream)
+    // 功能: 讀取「一整行」文字，會讀到空白字元也不會停止，直到遇到換行字元'\n'(或指定的分隔符號)為止
+
+    // 1. getline(cin, s)：從標準輸入讀取一整行，存入字串s
+    string line;
+    cout<<"請輸入一整行文字: ";
+    getline(cin, line);
+    cout<<"你輸入的是: "<< line <<endl;
+    // 輸入: Hello World from Claude
+    // 輸出: 你輸入的是: Hello World from Claude
+    // 注意: 若改用 cin >> line，遇到空白就會停止，只會讀到"Hello"，這是getline與cin>>最大的差異
+
+
+    cout<<("======================\n");// 分隔線
+
+
+    // 2-1. 【經典陷阱】cin>>x 之後直接接 getline() 會讀到空字串
+    // cin>>n 只會讀取數字本身，「不會」把數字後面的換行字元'\n'一併讀走，
+    // 因此緩衝區中還殘留著那個'\n'，若接著呼叫getline，會立刻讀到這個殘留的'\n'就結束，得到「空字串」
+    int n;
+    cin >> n;
+    cout<<"cin>>讀到的數字: "<< n <<endl;
+
+    string rest;
+    getline(cin, rest);
+    cout<<"未清緩衝區直接getline，得到: ["<< rest <<"]"<<endl;  // 用中括號標示方便觀察是否為空字串
+    /*
+    輸入: 5
+    輸出:
+    cin>>讀到的數字: 5
+    未清緩衝區直接getline，得到: []
+    */
+
+
+    // 2-2. 正確作法: 在cin>>之後、getline()之前，先用cin.ignore()清掉殘留的換行字元
+    int m;
+    cin >> m;
+    cout<<"cin>>讀到的數字: "<< m <<endl;
+
+    cin.ignore();  // 忽略緩衝區中的下一個字元(也就是那個殘留的'\n')
+    string next_line;
+    getline(cin, next_line);
+    cout<<"清掉殘留換行後getline，得到: "<< next_line <<endl;
+    /*
+    輸入:
+    42
+    Hello after ignore
+    輸出:
+    cin>>讀到的數字: 42
+    清掉殘留換行後getline，得到: Hello after ignore
+    */
+
+
+    cout<<("======================\n");// 分隔線
+
+
+    // 3. getline(ss, token, delim)：搭配stringstream使用，以「自訂分隔符號」切割字串
+    // 這正是練習題中用來切割"姓名,國文,英文,數學"、"學生1;學生2;..."的作法
+    string data = "apple,banana,cherry";
+    stringstream ss(data);
+    string token;
+    while (getline(ss, token, ',')){  // 每次呼叫getline，讀到下一個','之前的內容
+        cout<< token << " | ";
+    }
+    cout<<endl;
+    // 輸出: apple | banana | cherry | 
+}
 }
 
 
