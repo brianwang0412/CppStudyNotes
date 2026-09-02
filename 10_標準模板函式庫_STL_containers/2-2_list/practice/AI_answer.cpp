@@ -1,0 +1,176 @@
+// ============================ 以下為範例解答 ============================
+// 注意: 以下所有輸出結果，皆已實際編譯執行驗證，確保完全正確
+// (編譯環境: g++ 13.3.0, C++17)
+
+#include<list>
+#include<iostream>
+#include<algorithm>
+#include<numeric>
+#include<iterator>   // std::next / std::distance，list不支援隨機存取時需要
+using namespace std;
+
+int main(){
+
+    // 《Step1》建立空list，並依序push_back
+    list<int> waitList;
+    waitList.push_back(101);
+    waitList.push_back(102);
+    waitList.push_back(103);
+    waitList.push_back(104);
+    waitList.push_back(105);
+    cout<<"[Step1] ";
+    for (const int& x : waitList) cout<<x<<' ';
+    cout<<endl;
+    // 輸出: [Step1] 101 102 103 104 105
+
+
+    // 《Step2》用insert()搭配begin()插隊到最前面
+    waitList.insert(waitList.begin(), 999);
+    cout<<"[Step2] ";
+    for (const int& x : waitList) cout<<x<<' ';
+    cout<<endl;
+    // 輸出: [Step2] 999 101 102 103 104 105
+
+
+    // 《Step3》find()找到103的位置，再erase()刪除
+    auto it103 = find(waitList.begin(), waitList.end(), 103);
+    if (it103 != waitList.end()){
+        waitList.erase(it103);
+    }
+    cout<<"[Step3] ";
+    for (const int& x : waitList) cout<<x<<' ';
+    cout<<endl;
+    // 輸出: [Step3] 999 101 102 104 105
+
+
+    // 《Step4》remove_if()搭配Lambda，刪除所有偶數
+    waitList.remove_if([](int x){ return x % 2 == 0; });
+    cout<<"[Step4] ";
+    for (const int& x : waitList) cout<<x<<' ';
+    cout<<endl;
+    // 輸出: [Step4] 999 101 105
+    // 解釋: 999,101,105皆為奇數保留；102,104為偶數被刪除
+
+
+    // 《Step5》splice()將waitList2「全部」節點搬移到waitList尾端
+    list<int> waitList2 = {201, 203, 205};
+    waitList.splice(waitList.end(), waitList2);
+    cout<<"[Step5] waitList : ";
+    for (const int& x : waitList) cout<<x<<' ';
+    cout<<endl;
+    cout<<"[Step5] waitList2: ";
+    for (const int& x : waitList2) cout<<x<<' ';
+    cout<<endl;
+    /*
+    輸出:
+    [Step5] waitList : 999 101 105 201 203 205
+    [Step5] waitList2:            (空的，因為節點都被搬移到waitList了)
+    */
+
+
+    // 《Step6》push_back加入重複的201
+    waitList.push_back(201);
+    cout<<"[Step6] ";
+    for (const int& x : waitList) cout<<x<<' ';
+    cout<<endl;
+    // 輸出: [Step6] 999 101 105 201 203 205 201
+
+
+    // 《Step7》用list自己的sort()由小到大排序(不能用std::sort())
+    waitList.sort();
+    cout<<"[Step7] ";
+    for (const int& x : waitList) cout<<x<<' ';
+    cout<<endl;
+    // 輸出: [Step7] 101 105 201 201 203 205 999
+
+
+    // 《Step8》排序後用unique()去除相鄰重複
+    waitList.unique();
+    cout<<"[Step8] ";
+    for (const int& x : waitList) cout<<x<<' ';
+    cout<<endl;
+    // 輸出: [Step8] 101 105 201 203 205 999
+    // 解釋: 兩個相鄰的201被合併成一個，其餘不重複的元素不受影響
+
+
+    // 《Step9》merge()合併已排序好的vipList(合併後vipList會被清空)
+    list<int> vipList = {50, 80};
+    waitList.merge(vipList);
+    cout<<"[Step9] waitList: ";
+    for (const int& x : waitList) cout<<x<<' ';
+    cout<<endl;
+    cout<<"[Step9] vipList : ";
+    for (const int& x : vipList) cout<<x<<' ';
+    cout<<endl;
+    /*
+    輸出:
+    [Step9] waitList: 50 80 101 105 201 203 205 999
+    [Step9] vipList :            (空的，因為節點都被搬移到waitList了)
+    */
+
+
+    // 《Step10》用list自己的reverse()反轉(效率優於std::reverse())
+    waitList.reverse();
+    cout<<"[Step10] ";
+    for (const int& x : waitList) cout<<x<<' ';
+    cout<<endl;
+    // 輸出: [Step10] 999 205 203 201 105 101 80 50
+
+
+    // 《Step11》front() / back() / size() / empty()
+    cout<<"[Step11] front="<<waitList.front()
+        <<", back="<<waitList.back()
+        <<", size="<<waitList.size()
+        <<", empty="<<waitList.empty()<<endl;
+    // 輸出: [Step11] front=999, back=50, size=8, empty=0
+
+
+    // 《Step12》搭配<numeric>的accumulate()計算總和與平均
+    int sum = accumulate(waitList.begin(), waitList.end(), 0);
+    double avg = (double)sum / waitList.size();
+    cout<<"[Step12] sum="<<sum<<", avg="<<avg<<endl;
+    // 輸出: [Step12] sum=1944, avg=243
+    // 注意: 1944/8=243剛好為整數，因此cout印出double時不會顯示多餘的".0"
+
+
+    // 《Step13》分別用正向迭代器與反向迭代器遍歷
+    cout<<"[Step13][正向] ";
+    for (list<int>::iterator it = waitList.begin(); it != waitList.end(); it++){
+        cout<< *it << ' ';
+    }
+    cout<<endl;
+    // 輸出: [Step13][正向] 999 205 203 201 105 101 80 50
+
+    cout<<"[Step13][反向] ";
+    for (list<int>::reverse_iterator rit = waitList.rbegin(); rit != waitList.rend(); rit++){
+        cout<< *rit << ' ';
+    }
+    cout<<endl;
+    // 輸出: [Step13][反向] 50 80 101 105 201 203 205 999
+    // 驗證: 正向與反向遍歷的結果恰好完全顛倒，符合預期
+
+    return 0;
+}
+
+/*
+範例輸出:
+[Step1] 101 102 103 104 105 
+[Step2] 999 101 102 103 104 105 
+[Step3] 999 101 102 104 105 
+[Step4] 999 101 105 
+[Step5] waitList : 999 101 105 201 203 205 
+[Step5] waitList2: 
+[Step6] 999 101 105 201 203 205 201 
+[Step7] 101 105 201 201 203 205 999 
+[Step8] 101 105 201 203 205 999 
+[Step9] waitList: 50 80 101 105 201 203 205 999 
+[Step9] vipList : 
+[Step10] 999 205 203 201 105 101 80 50 
+[Step11] front=999, back=50, size=8, empty=0
+[Step12] sum=1944, avg=243
+[Step13][正向] 999 205 203 201 105 101 80 50 
+[Step13][反向] 50 80 101 105 201 203 205 999
+*/
+
+
+// 本練習題與範例解答 Generated by Claude 2026/8/26
