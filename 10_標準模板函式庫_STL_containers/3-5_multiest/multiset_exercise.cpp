@@ -1,0 +1,182 @@
+#include<set>      // multiset定義在<set>標頭檔中
+#include<iostream>
+#include<algorithm>
+#include<numeric>
+using namespace std;
+
+/*
+======================================================================
+《multiset綜合練習題》—— 班級小考成績統計系統
+======================================================================
+
+情境:
+老師要用 std::multiset<int> 來管理「全班某次小考的所有成績」，
+因為成績本來就可能重複(例如好幾位同學都考85分)，且老師希望成績
+「隨時保持由小到大排序」，方便隨時查看目前最高分、最低分與各分數
+的人數分布，這正是multiset最適合發揮的場景(與set不同，set無法
+保存重複的分數)。
+
+------------------------------------------------------------
+請依序完成以下 Step1 ~ Step12 的操作(請完全依照順序執行，因為每一步
+都是基於「前一步執行完的結果」繼續操作)。每完成一步，請將要求的內容
+印出：
+
+【Step1】建立一個空的 multiset<int> scores
+
+【Step2】依序使用 insert() 新增以下6筆成績，並印出此時scores
+         「完整的內容」(由小到大排序):
+         85, 70, 85, 60, 90, 85
+
+【Step3】使用 count() 印出目前「85分」的人數
+
+【Step4】使用 equal_range() 印出所有「85分」的成績(驗證確實有
+         count()所統計的那麼多筆)
+
+【Step5】有一位70分的同學成績登記錯誤需要先刪除，請用erase(value)
+         將「70」這個值刪除，並印出erase()的回傳值(實際刪除的筆數)，
+         以及刪除後scores的完整內容
+
+【Step6】後來發現其實有兩位同學都是60分(原本只登記了一筆)，請用
+         insert()再新增一筆「60」，並印出此時scores的完整內容
+
+【Step7】請用 find() 找出scores中「其中一筆」60分的位置，印出
+         該元素的值，接著直接用 erase(iterator) 把「這一筆」刪除
+         (只刪除找到的這一筆，不可用erase(value)把兩筆60分都刪除)，
+         並印出刪除後scores的完整內容
+
+【Step8】請用 lower_bound() 印出所有「成績>=85分」的學生成績
+
+【Step9】印出目前scores的: 總人數(size)、是否為空(empty)
+
+【Step10】請搭配 <algorithm> 的 count_if()，計算目前scores中
+          「成績>=85分」的人數，並印出結果(驗證與Step8看到的
+          元素個數一致)
+
+【Step11】請搭配 <numeric> 的 accumulate()，計算目前所有成績的
+          總分(sum)與平均(avg，型別為double)，並印出兩者
+
+【Step12】有一位60分的同學經過複查後確定成績應改為100分。由於
+          multiset的元素不能直接修改，請用「先erase()刪除舊值60，
+          再insert()新增新值100」的正確做法完成修改，並印出
+          修改後scores的完整內容
+======================================================================
+*/
+
+
+// ============================ 以下為範例解答 ============================
+// 注意: 以下所有輸出結果，皆已實際編譯執行驗證，確保完全正確
+// (編譯環境: g++ 13.3.0, C++17)
+
+int main(){
+
+    // 《Step1》建立空的multiset<int>
+    multiset<int> scores;
+
+
+    // 《Step2》依序insert()新增6筆成績
+    scores.insert(85);
+    scores.insert(70);
+    scores.insert(85);
+    scores.insert(60);
+    scores.insert(90);
+    scores.insert(85);
+
+    cout<<"[Step2] ";
+    for (int x : scores) cout<<x<<' ';
+    cout<<endl;
+    // 輸出: [Step2] 60 70 85 85 85 90
+    // 解釋: multiset永遠自動由小到大排序，重複的85分「三筆都會保留」
+
+
+    // 《Step3》count()計算85分的人數
+    cout<<"[Step3] count(85) = "<< scores.count(85) <<endl;
+    // 輸出: [Step3] count(85) = 3
+
+
+    // 《Step4》equal_range()取得85分的[lower_bound,upper_bound)範圍
+    auto range = scores.equal_range(85);
+    cout<<"[Step4] all 85s: ";
+    for (auto it = range.first; it != range.second; it++){
+        cout<< *it << ' ';
+    }
+    cout<<endl;
+    // 輸出: [Step4] all 85s: 85 85 85
+
+
+    // 《Step5》erase(value)刪除「所有」等於70的元素
+    int removed = scores.erase(70);
+    cout<<"[Step5] removed="<<removed<<" -> ";
+    for (int x : scores) cout<<x<<' ';
+    cout<<endl;
+    // 輸出: [Step5] removed=1 -> 60 85 85 85 90
+    // 解釋: erase(value)會把「所有」等於該值的元素一次刪除，由於scores中只有一筆70，
+    //      因此回傳值(實際刪除筆數)為1
+
+
+    // 《Step6》insert()新增第二筆60分
+    scores.insert(60);
+    cout<<"[Step6] ";
+    for (int x : scores) cout<<x<<' ';
+    cout<<endl;
+    // 輸出: [Step6] 60 60 85 85 85 90
+
+
+    // 《Step7》find()找到60「其中一筆」，印出後erase(iterator)單獨刪除
+    auto it60 = scores.find(60);
+    cout<<"[Step7] find(60) -> "<< *it60 <<endl;
+    // 輸出: [Step7] find(60) -> 60
+
+    scores.erase(it60);  // 只刪除這一筆60，另一筆60不受影響
+    cout<<"[Step7] after erase -> ";
+    for (int x : scores) cout<<x<<' ';
+    cout<<endl;
+    // 輸出: [Step7] after erase -> 60 85 85 85 90
+
+
+    // 《Step8》lower_bound(85)開始列出到end()的所有元素(即成績>=85分的部分)
+    cout<<"[Step8] scores >= 85: ";
+    for (auto it = scores.lower_bound(85); it != scores.end(); it++){
+        cout<< *it << ' ';
+    }
+    cout<<endl;
+    // 輸出: [Step8] scores >= 85: 85 85 85 90
+
+
+    // 《Step9》size() / empty()
+    cout<<"[Step9] size="<<scores.size()<<", empty="<<scores.empty()<<endl;
+    // 輸出: [Step9] size=5, empty=0
+
+
+    // 《Step10》搭配<algorithm>的count_if()，統計>=85分的人數
+    int cnt = count_if(scores.begin(), scores.end(), [](int x){ return x >= 85; });
+    cout<<"[Step10] count_if(>=85) = "<<cnt<<endl;
+    // 輸出: [Step10] count_if(>=85) = 4
+    // 解釋: 與Step8看到的「85 85 85 90」共4筆元素數量一致，驗證兩種作法等價
+
+
+    // 《Step11》搭配<numeric>的accumulate()計算總分與平均
+    int sum = accumulate(scores.begin(), scores.end(), 0);
+    double avg = (double)sum / scores.size();
+    cout<<"[Step11] sum="<<sum<<", avg="<<avg<<endl;
+    // 輸出: [Step11] sum=405, avg=81
+    // 計算: 60+85+85+85+90=405，405/5=81(恰好為整數，故cout印出double時不會顯示多餘的".0")
+
+
+    // 《Step12》正確的「修改」做法: 先erase()刪除舊值，再insert()新值
+    auto itOld = scores.find(60);
+    if (itOld != scores.end()){
+        scores.erase(itOld);   // 先刪除舊值60
+        scores.insert(100);    // 再插入新值100
+    }
+    cout<<"[Step12] ";
+    for (int x : scores) cout<<x<<' ';
+    cout<<endl;
+    // 輸出: [Step12] 85 85 85 90 100
+    // 解釋: multiset的元素不可透過迭代器直接賦值修改(元素即為排序依據)，
+    //      因此必須採用「刪除舊值+插入新值」的方式才能正確「修改」資料
+
+    return 0;
+}
+
+
+// 本練習題與範例解答 Generated by Claude 2026/10/2
